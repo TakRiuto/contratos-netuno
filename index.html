@@ -1122,7 +1122,7 @@
         if (tipo === 'whatsapp') {
             window.open(`https://api.whatsapp.com/send?text=${encodeURIComponent(texto)}`);
         } else if (tipo === 'telegram') {
-            window.open(`https://t.me/share/url?url=&text=${encodeURIComponent(texto)}`);
+            window.open(`https://t.me/share/url?url=${encodeURIComponent(texto)}`, '_blank');
         } else if (tipo === 'copiar') {
             navigator.clipboard.writeText(texto).then(() => {
                 mostrarToast("📋 ¡Plantilla copiada con éxito!");
