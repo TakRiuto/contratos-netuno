@@ -1,0 +1,714 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Generador Oficial de Contratos Netuno</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --azul-netuno: #00a3e0;
+            --azul-oscuro: #060e1b; 
+            --azul-card: rgba(13, 27, 42, 0.92); 
+            --texto-claro: #e0f2fe; 
+            --etiquetas: #94a3b8;    
+            --borde-input: #1e293b;
+            --verde-wa: #25d366;
+            --azul-tg: #229ED9;
+        }
+
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        
+        body { 
+            font-family: 'Montserrat', sans-serif; 
+            background: linear-gradient(135deg, rgba(6, 14, 27, 0.95), rgba(0, 163, 224, 0.2)), 
+                        url('https://images.unsplash.com/photo-1550751827-4bd374c3f58b?auto=format&fit=crop&q=80&w=2070');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            color: var(--texto-claro); 
+            padding: 12px;
+        }
+
+        .container { 
+            max-width: 900px; 
+            margin: 15px auto 40px auto; 
+            background: var(--azul-card); 
+            padding: 30px 24px; 
+            border-radius: 20px; 
+            border: 1px solid rgba(0, 163, 224, 0.3);
+            box-shadow: 0 20px 50px rgba(0,0,0,0.8); 
+            backdrop-filter: blur(10px);
+        }
+
+        .header-logo {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .header-logo img {
+            max-width: 260px;
+            filter: drop-shadow(0 0 12px rgba(0, 163, 224, 0.4));
+        }
+
+        h2 { 
+            text-align: center; 
+            color: var(--azul-netuno); 
+            margin-bottom: 25px; 
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            font-size: 20px;
+            font-weight: 700;
+        }
+
+        h3 { 
+            background: linear-gradient(90deg, rgba(0, 163, 224, 0.25), transparent);
+            color: white; 
+            padding: 10px 16px; 
+            border-radius: 8px; 
+            margin: 30px 0 15px 0; 
+            font-size: 13px; 
+            text-transform: uppercase; 
+            font-weight: 700;
+            border-left: 4px solid var(--azul-netuno);
+            letter-spacing: 0.5px;
+        }
+
+        .grid { 
+            display: grid; 
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); 
+            gap: 15px; 
+        }
+
+        .input-group { position: relative; margin-bottom: 12px; }
+
+        label { 
+            display: block; 
+            font-size: 11px; 
+            color: var(--etiquetas); 
+            margin-bottom: 6px; 
+            font-weight: 600; 
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        input, select, textarea, .custom-select-trigger { 
+            width: 100%; 
+            padding: 12px 14px; 
+            border-radius: 10px; 
+            border: 1px solid var(--borde-input); 
+            background: rgba(6, 14, 27, 0.85); 
+            color: white; 
+            outline: none; 
+            font-size: 13px; 
+            transition: all 0.25s ease; 
+        }
+
+        input:focus, select:focus, .custom-select-trigger:focus { 
+            border-color: var(--azul-netuno); 
+            background: rgba(13, 27, 42, 0.95);
+            box-shadow: 0 0 10px rgba(0, 163, 224, 0.35);
+        }
+
+        /* Buscador integrado de Asesores */
+        .searchable-container { position: relative; width: 100%; }
+        .custom-select-trigger {
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .custom-select-trigger::after { content: '▼'; font-size: 9px; color: var(--azul-netuno); }
+
+        .dropdown-panel {
+            display: none;
+            position: absolute;
+            top: 100%; left: 0; right: 0;
+            background: #0d1b2a;
+            border: 1px solid var(--azul-netuno);
+            border-radius: 10px;
+            margin-top: 4px;
+            z-index: 1000;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.8);
+            overflow: hidden;
+        }
+        .search-wrapper { padding: 8px; border-bottom: 1px solid var(--borde-input); }
+        .search-wrapper input { padding: 8px; background: #060e1b; border: 1px solid var(--azul-netuno); }
+        .options-list { max-height: 220px; overflow-y: auto; }
+        .option-item { padding: 10px 14px; cursor: pointer; font-size: 12.5px; border-bottom: 1px solid rgba(255,255,255,0.05); }
+        .option-item:hover { background: var(--azul-netuno); color: white; }
+        .option-item.hidden { display: none; }
+
+        #seccion_salud, .beneficiario-extra { display: none; }
+
+        /* Botonera de Acción Flotante / Inferior */
+        .btn-group { 
+            display: flex; 
+            flex-wrap: wrap;
+            gap: 12px; 
+            margin-top: 35px; 
+            background: rgba(6, 14, 27, 0.95); 
+            padding: 18px; 
+            border-radius: 16px; 
+            border: 1px solid rgba(0, 163, 224, 0.25);
+            position: sticky;
+            bottom: 10px;
+            z-index: 900;
+        }
+
+        button { 
+            flex: 1; 
+            padding: 14px; 
+            border: none; 
+            border-radius: 10px; 
+            cursor: pointer; 
+            font-weight: 700; 
+            transition: 0.25s; 
+            color: white; 
+            text-transform: uppercase; 
+            font-size: 12px;
+            min-width: 140px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+        }
+
+        .btn-wa { background: var(--verde-wa); }
+        .btn-tg { background: var(--azul-tg); }
+        .btn-copy { background: linear-gradient(45deg, #007bb0, var(--azul-netuno)); }
+        .btn-clear { background: #334155; flex: none; width: 50px; min-width: 50px; font-size: 16px; }
+        
+        button:hover { 
+            filter: brightness(1.15); 
+            transform: translateY(-2px); 
+            box-shadow: 0 6px 15px rgba(0, 163, 224, 0.4);
+        }
+
+        /* Notificación Toast */
+        #toast {
+            visibility: hidden;
+            min-width: 250px;
+            background-color: #22c55e;
+            color: #fff;
+            text-align: center;
+            border-radius: 8px;
+            padding: 14px;
+            position: fixed;
+            z-index: 2000;
+            left: 50%;
+            bottom: 30px;
+            transform: translateX(-50%);
+            font-weight: 600;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.6);
+        }
+        #toast.show { visibility: visible; animation: fadein 0.5s, fadeout 0.5s 2.5s; }
+        @keyframes fadein { from { bottom: 0; opacity: 0; } to { bottom: 30px; opacity: 1; } }
+        @keyframes fadeout { from { bottom: 30px; opacity: 1; } to { bottom: 0; opacity: 0; } }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <div class="header-logo">
+        <img src="https://i.ibb.co/Y7fFXDCP/Logo-Net-Uno-Diapo-RIF.png" alt="Netuno Logo">
+    </div>
+
+    <h2>Generador de Contratos</h2>
+
+    <h3>Información de Gestión</h3>
+    <div class="grid">
+        <div class="input-group">
+            <label>Asesor / Contratista: (Obligatorio)</label>
+            <div class="searchable-container">
+                <div class="custom-select-trigger" id="asesor-trigger" onclick="toggleDropdown()">Seleccione Asesor</div>
+                <div class="dropdown-panel" id="asesor-panel">
+                    <div class="search-wrapper">
+                        <input type="text" id="inputBusqueda" placeholder="Buscar asesor..." onkeyup="filtrarLista()">
+                    </div>
+                    <div class="options-list" id="listaOpciones"></div>
+                </div>
+            </div>
+            <input type="hidden" id="asesor" required>
+        </div>
+
+        <div class="input-group">
+            <label>Tipo de Contrato: (Obligatorio)</label>
+            <select id="tipo_contrato" required onchange="gestionarContrato()">
+                <option value="NUEVO" selected>NUEVO</option>
+                <option value="RECUPERADO HARD">RECUPERADO HARD</option>
+                <option value="SOFT">SOFT</option>
+                <option value="MUDANZA">MUDANZA</option>
+                <option value="RECONEXION - BAJA VOLUNTARIA">RECONEXION - BAJA VOLUNTARIA</option>
+            </select>
+        </div>
+
+        <div class="input-group">
+            <label>Supervisor:</label>
+            <select id="supervisor" required>
+                <option value="" disabled selected>Seleccione Supervisor</option>
+                <option>TUR - BELKYS PIÑA</option>
+                <option>TUR - YOSCARI MARQUEZ</option>
+                <option>SAC - FRANCYS RUMBOS</option>
+                <option>PLN - LUIS MALPICA</option>
+                <option>MCY - IAN ESCOBAR</option>
+                <option>MCY - LUISIANA MENDOZA</option>
+                <option>LMT - ANA MACHUCA</option>
+                <option>LAV - GABRIEL HERNANDEZ</option>
+                <option>TEJ - SUPERVISOR</option>
+            </select>
+        </div>
+
+        <div class="input-group">
+            <label>Operadora:</label>
+            <select id="operadora" required>
+                <option value="" disabled selected>Seleccione Operadora</option>
+                <option>Maracay</option>
+                <option>Turmero</option>
+                <option>La Victoria</option>
+                <option>La Morita</option>
+                <option>Palo Negro</option>
+                <option>Samanes</option>
+                <option>Colonia Tovar</option>
+                <option>Tejerias</option>
+                <option>SAC - Maracay</option>
+                <option>SAC - Turmero</option>
+                <option>SAC - La Victoria</option>
+                <option>SAC - Palo Negro</option>
+                <option>SAC - La Morita</option>
+                <option>Cobranzas - Maracay</option>
+                <option>Cobranzas - La Morita</option>
+                <option>Cobranzas - Palo Negro</option>
+                <option>Cobranzas - La Victoria</option>
+                <option>Cobranzas - Turmero</option>
+            </select>
+        </div>
+
+        <div class="input-group" id="group_fecha_firma">
+            <label>Fecha de Firma:</label>
+            <input type="date" id="fecha_firma" required>
+        </div>
+    </div>
+
+    <h3>Datos del Titular</h3>
+    <div class="grid">
+        <div class="input-group"><label>Nombres y Apellidos:</label><input type="text" id="nombre" required placeholder="Ej: CARLOS RODRIGUEZ"></div>
+        <div class="input-group">
+            <label>Documento de Identidad:</label>
+            <div style="display: flex; gap: 6px;">
+                <select id="prefijo_documento" style="flex: 0 0 85px; padding: 12px 6px;">
+                    <option value="V-">V-</option>
+                    <option value="E-">E-</option>
+                    <option value="J-">RIF J-</option>
+                    <option value="G-">RIF G-</option>
+                    <option value="RIF V-">RIF V-</option>
+                </select>
+                <input type="text" id="documento" required placeholder="12345678" style="flex: 1;">
+            </div>
+        </div>
+        <div class="input-group"><label>Correo Electrónico:</label><input type="email" id="correo" required placeholder="cliente@gmail.com"></div>
+        <div class="input-group"><label>Teléfono 1:</label><input type="text" id="tel1" required placeholder="04121234567"></div>
+        <div class="input-group"><label>Teléfono 2:</label><input type="text" id="tel2" placeholder="04147654321 (Opcional)"></div>
+    </div>
+
+    <h3 id="h3_instalacion">Dirección de Instalación</h3>
+    <div class="grid" id="grid_instalacion">
+        <div class="input-group" id="group_municipio"><label>Municipio:</label><input type="text" id="municipio" required placeholder="Ej: GIRARDOT"></div>
+        <div class="input-group" id="group_urbanismo"><label>Urbanismo:</label><input type="text" id="urbanismo" required placeholder="Ej: LOS SAMANES"></div>
+        <div class="input-group" id="group_sector"><label>Sector:</label><input type="text" id="sector" placeholder="Ej: 4 (o NA)"></div>
+        <div class="input-group" id="group_calle"><label>Calle Principal:</label><input type="text" id="calle_principal" required placeholder="Ej: CALLE 12"></div>
+        <div class="input-group" id="group_residencia"><label>Residencia / Conjunto:</label><input type="text" id="residencia" placeholder="NA si no aplica"></div>
+        <div class="input-group" id="group_edificio"><label>Edificio:</label><input type="text" id="edificio" placeholder="NA si no aplica"></div>
+        <div class="input-group" id="group_casa"><label>Casa / Piso / Apto:</label><input type="text" id="casa_apto" required placeholder="CASA 5 / APTO 2B"></div>
+        <div class="input-group" id="group_ci"><label>CI (Caja Inicial):</label><input type="text" id="ci" placeholder="NA si no aplica"></div>
+        <div class="input-group" id="group_cf"><label>CF (Caja Final):</label><input type="text" id="cf" placeholder="NA si no aplica"></div>
+        <div class="input-group" id="group_enlace"><label>Enlace Maps / Coordenadas:</label><input type="text" id="enlace" placeholder="https://maps.app.goo.gl/... (o NA)"></div>
+    </div>
+
+    <h3 id="h3_tecnico">Detalles Técnicos y Plan</h3>
+    <div class="grid" id="grid_tecnico">
+        <div class="input-group" id="group_clase">
+            <label>Clase:</label>
+            <select id="clase" required>
+                <option value="RESIDENCIAL" selected>RESIDENCIAL</option>
+                <option value="COMERCIO">COMERCIO</option>
+            </select>
+        </div>
+        <div class="input-group" id="group_velocidad">
+            <label>Velocidad:</label>
+            <select id="velocidad" required onchange="gestionarSalud()">
+                <option value="" disabled selected>Seleccione Plan</option>
+                <option value="6mb">6 Megas</option>
+                <option value="100mb">100 Megas</option>
+                <option value="400mb">400 Megas (+Salud)</option>
+                <option value="500mb">500 Megas (+Salud)</option>
+                <option value="600mb">600 Megas (+Salud)</option>
+                <option value="800mb">800 Megas (+Salud)</option>
+            </select>
+        </div>
+        <div class="input-group" id="group_tipo_red">
+            <label>Tipo de Red:</label>
+            <select id="tipo_red" required>
+                <option value="NETUNO" selected>NETUNO</option>
+                <option value="COMPARTIDAS">COMPARTIDAS</option>
+            </select>
+        </div>
+        <div class="input-group" id="group_ont">
+            <label>ONT:</label>
+            <select id="ont">
+                <option value="SIN WI-FI" selected>SIN WI-FI</option>
+                <option value="CON WI-FI">CON WI-FI</option>
+            </select>
+        </div>
+        <div class="input-group" id="group_migrado">
+            <label>Migrado de:</label>
+            <select id="migrado_de" required>
+                <option value="n/a" selected>N/A</option>
+                <option value="cantv">CANTV</option>
+                <option value="fibex">FIBEX</option>
+                <option value="inter">INTER</option>
+                <option value="simple">SIMPLE</option>
+                <option value="galanet">GALANET</option>
+                <option value="360net">360 NET</option>
+                <option value="netcomplus">NETCOM PLUS</option>
+                <option value="multitel">MULTITEL</option>
+                <option value="aldanet">ALDANET</option>
+                <option value="litium">LITIUM</option>
+                <option value="conexa">CONEXA</option>
+            </select>
+        </div>
+    </div>
+    <div class="input-group" id="group_obs_router">
+        <label>Observación del Router:</label>
+        <textarea id="obs_router" rows="2" placeholder="Posee router propio / requiere router..."></textarea>
+    </div>
+
+    <div id="seccion_suscripcion">
+        <h3>Detalles de Suscripción y Cobro</h3>
+        <div class="grid">        
+            <div class="input-group" id="group_instalacion_precio">
+                <label>Costo Instalación:</label>
+                <select id="instalacion" required>
+                    <option value="gratis">0$</option>
+                    <option value="5">5$</option>
+                    <option value="8">8$</option>
+                    <option value="10">10$</option>
+                    <option value="15">15$</option>
+                    <option value="19" selected>19$</option>
+                    <option value="39">39$</option>
+                </select>
+            </div>
+            <div class="input-group" id="group_mensualidad">
+                <label>Mensualidad Estimada:</label>
+                <select id="mensualidad" required>
+                    <option>11$</option>
+                    <option>13$</option>
+                    <option selected>21$</option>
+                    <option>22$</option>
+                    <option>29$</option>
+                    <option>30$</option>
+                    <option>32$</option>
+                    <option>37,12$</option>
+                    <option>44$</option>
+                    <option>60$</option>
+                </select>
+            </div>
+            <div class="input-group" id="group_promocion">
+                <label>Promoción:</label>
+                <select id="promocion" required>
+                    <option selected>N/A</option>
+                    <option>3M x 19$</option>
+                    <option>3M x 20$</option>
+                    <option>3M x 39$ RC</option>
+                    <option>3M x 40$</option>
+                </select>
+            </div>
+        </div>
+    </div>
+
+    <!-- Sección Salud Dinámica -->
+    <div id="seccion_salud">
+        <h2 style="margin-top:35px; border-bottom: 2px solid var(--azul-netuno); padding-bottom: 8px;">Servicios de Salud (Plan Plus)</h2>
+        <h3>🚑 Beneficiario Principal (Titular)</h3>
+        <div class="grid">
+            <div class="input-group">
+                <label>Cédula:</label>
+                <div style="display: flex; gap: 6px;">
+                    <select id="prefijo_b1_documento" style="flex: 0 0 75px; padding: 12px 6px;"><option value="V-">V-</option><option value="E-">E-</option></select>
+                    <input type="text" id="b1_documento" style="flex: 1;">
+                </div>
+            </div>
+            <div class="input-group"><label>Nombres/Apellidos:</label><input type="text" id="b1_nombre"></div>
+            <div class="input-group"><label>Fecha Nac.:</label><input type="date" id="b1_fecha"></div>
+            <div class="input-group"><label>Teléfono:</label><input type="text" id="b1_tel"></div>
+            <div class="input-group"><label>Correo:</label><input type="text" id="b1_correo"></div>
+            <div class="input-group"><label>Sexo:</label><select id="b1_sexo"><option>M</option><option>F</option></select></div>
+            <div class="input-group"><label>Estado Civil:</label><select id="b1_civil"><option>Soltero(a)</option><option>Casado(a)</option><option>Divorciado(a)</option><option>Viudo(a)</option></select></div>
+        </div>
+
+        <div id="sec_b2" class="beneficiario-extra">
+            <h3>🚑 Beneficiario Adicional 1</h3>
+            <div class="grid">
+                <div class="input-group"><label>Parentesco:</label><select id="b2_parentesco"><option>HIJO</option><option>CONYUGE</option><option>MADRE</option><option>PADRE</option></select></div>
+                <div class="input-group"><label>Nombre/Apellido:</label><input type="text" id="b2_nombre"></div>
+                <div class="input-group">
+                    <label>Cédula:</label>
+                    <div style="display: flex; gap: 6px;">
+                        <select id="prefijo_b2_documento" style="flex: 0 0 75px; padding: 12px 6px;"><option value="V-">V-</option><option value="E-">E-</option></select>
+                        <input type="text" id="b2_documento" style="flex: 1;">
+                    </div>
+                </div>
+                <div class="input-group"><label>Fecha Nac.:</label><input type="date" id="b2_fecha"></div>
+                <div class="input-group"><label>Teléfono:</label><input type="text" id="b2_tel"></div>
+                <div class="input-group"><label>Sexo:</label><select id="b2_sexo"><option>M</option><option>F</option></select></div>
+            </div>
+        </div>
+
+        <div id="sec_b3" class="beneficiario-extra">
+            <h3>🚑 Beneficiario Adicional 2</h3>
+            <div class="grid">
+                <div class="input-group"><label>Parentesco:</label><select id="b3_parentesco"><option>HIJO</option><option>CONYUGE</option><option>MADRE</option><option>PADRE</option></select></div>
+                <div class="input-group"><label>Nombre/Apellido:</label><input type="text" id="b3_nombre"></div>
+                <div class="input-group">
+                    <label>Cédula:</label>
+                    <div style="display: flex; gap: 6px;">
+                        <select id="prefijo_b3_documento" style="flex: 0 0 75px; padding: 12px 6px;"><option value="V-">V-</option><option value="E-">E-</option></select>
+                        <input type="text" id="b3_documento" style="flex: 1;">
+                    </div>
+                </div>
+                <div class="input-group"><label>Fecha Nac.:</label><input type="date" id="b3_fecha"></div>
+                <div class="input-group"><label>Teléfono:</label><input type="text" id="b3_tel"></div>
+                <div class="input-group"><label>Sexo:</label><select id="b3_sexo"><option>M</option><option>F</option></select></div>
+            </div>
+        </div>
+    </div>
+
+    <h3>Información de Pago</h3>
+    <div class="grid">
+        <div class="input-group"><label>Medio de Pago:</label><select id="medio_pago"><option>Pago Movil</option><option>Divisas Efectivo</option><option>Punto de Venta</option><option>Zelle</option></select></div>
+        <div class="input-group"><label>Monto:</label><input type="text" id="monto" required placeholder="Ej: 8138.00"></div>
+        <div class="input-group"><label>Tasa BCV:</label><input type="text" id="tasa_bcv" placeholder="Ej: 813.74"></div>
+        <div class="input-group"><label>Terminal:</label><input type="text" id="terminal" placeholder="NA si no aplica"></div>
+        <div class="input-group"><label>Lote:</label><input type="text" id="lote" placeholder="NA si no aplica"></div>
+        <div class="input-group"><label>Aprobación:</label><input type="text" id="aprobacion" placeholder="NA si no aplica"></div>
+    </div>
+
+    <!-- Botonera de Acción -->
+    <div class="btn-group">
+        <button class="btn-clear" title="Reiniciar Formulario" onclick="location.reload()">🧹</button>
+        <button class="btn-copy" onclick="procesarAccion('copiar')">📋 Copiar Plantilla</button>
+        <button class="btn-tg" onclick="procesarAccion('telegram')">✈️ Telegram</button>
+        <button class="btn-wa" onclick="procesarAccion('whatsapp')">📲 WhatsApp</button>
+    </div>
+</div>
+
+<div id="toast">✅ ¡Plantilla copiada al portapapeles!</div>
+
+<script>
+    // Asesores oficiales sincronizados
+    const ASESORES = [
+        "YOSDARLIN MARIELIS BARRIOS AYALA", "MARIA GABRIELA BERMUDEZ DOMINGUEZ", "NEACOLLE MICHELL BLANCO RONDON", 
+        "KEYLA ANDREYNA CASTRO SILVA", "KEYARLY NICOLASA CONTRERAS ROSALES", "DUILIBERSI ESPINOZA SALAS", "BRAIN ENRIQUE FANDIÑO VALDERREY",
+        "JOSE ALEJANDRO GONZALEZ MOTA", "ANGELY LEONELY GUILLEN VILLARREAL", "ROCCI DANIELA LOPEZ FIGUERA", "GENYS ALEXANDER MARTIN APONTE",
+        "EDUARDO JOSE RIOS OROPEZA", "YAXIBITH DAYALING RIVAS MARTINEZ", "STEFHANIE CAROLINA GARCIA BARRIOS", "MAYERLING NOSLEN GARCIA TORRES", 
+        "ANTHONY DAVID GELBES BERMEJO", "NEYKARY LUCIA GONZALEZ DUARTE", "NEYALEX CARALY MORENO ALDAZORO", "ORLEANNYS DEL VALLE DIAZ ZAPATA", 
+        "BRAYAN ALEXANDER RUIZ RIVAS", "MARIANA ESPARRAGOZA", "GENESIS DIAZ", "JAIRO MENDEZ", "YENNIFER TRCONIS", 
+        "KASMIR SANTANA", "ORYANNYS OCHOA", "YDALNMY MALDONADO", "INVERSIONES MAYO", "SERVICIOS APACHE TECNOLOGY CA",
+        "TELNETWORK", "4TECH", "MARIANA YRREAZA", "DUBRASKA PALACIOS", "OSNAYERLIN BARCENAS", "YOSMERY MARQUEZ", "ADRIANA MATUTE", "ANDREINA SILVA",
+        "ANGELIMAR IDALGO", "BELKYS PIÑA", "DUBRASKA TORRES", "FERNANDO COLMENARES", "GILBERT BISAMON", "JOFREN PEREZ", "LORENA MARTINEZ", "MARIA GONZALEZ",
+        "RAFAEL MIERES", "SANTIAGO MENDEZ", "YNNELIZ ACOSTA", "AMBAR BANDRES", "CINDY BRICEÑO", "JEANMARY BRITO", "JOSE CAMPOS", "ANDREA CASTRILLO",
+        "ARGENIS GONZALEZ", "WILFREDO GRANDA", "KARLA LIRA", "DIGLEYSIS LUNA", "JOSE MENDOZA", "STEFANNY MERCADO", "JORGE MOLINA", "GERMALYS NAVAS",
+        "ROZAIDA PERDOMO", "NORELIS PINEDA", "ORIANNYS RIVAS", "ANTOINE RIVERO", "JOSE ROA", "ALEJANDRA RODRIGUEZ", "OTNIELY RONDON", "DAIBELYS SANCHEZ",
+        "GABRIEL SOSA", "YELAIN TRIAS", "NEIRA VASQUEZ", "MICHELLE VERA", "CONEXSAL, C.A", "DOMINGO BARBER", "GRUB TECHNOLOGY", "I.Y TECNISERVICIOS, C.A", "INVERSIONES CYS 2014 C.A", 
+        "TECNISOLUCIONES", "INVERSIONES SUMISERVICE, C.A", "EMPRENDIMIENTO JOSE", "ORLANDO EZEQUIEL CALANCHE ROJAS, FP", "PROYECTA, C.A", "PROYECTOS Y SOLUCIONES DT, C.A",
+        "TELECOMUNICACIONES J.M CORDERO FP", "PEDRO CORDOVA", "FIBRATEC GM C.A", "FAVIOLA BRICEÑO", "BENINGEL DIAZ", "DALKIS MEDINA", "CINTIA MENDOZA",
+        "OMAR OLIVEROS", "ANDREA SANCHEZ", "VERONICA VILLABONA", "VEDA ARAQUE", "DUYIMA CASTILLO", "GABRIELA LLAMOZAS", "YORGELIS LOYO", "YOSBERLYN MASAVE",
+        "JOHNSON MENDOZA", "ANTHONIS OSPINA", "LUIS OVALLES", "ARLINETH PEREZ", "GABRIEL PEREZ", "ENRILEIDY RAMIREZ", "RONALD SANCHEZ", "MAGALIS BLANCO",
+        "HIANA MIJARES", "EVELYN CRUZ", "DIXIA HERRERA", "ARALYS ROMERO", "RINELSIS MEDINA", "JIM RODRIGUEZ", "RJC SERV 2024 C.A",
+        "TELEFIBRAS C.A", "EMM SERVICES 2024 C.A", "CONSTRUTELS J.A.V C.A", "ANDREA CALLE", "ALEIDY CARABALLO", "AMBAR DIAZ", "MIGUEL PIÑERO", "NERJENOR, C.A", "MULTISERVICIOS M&J C.A", "DISTRIBUIDORA ZM",
+        "VALERIA", "MENDOZA", "YOELIS VILORIA", "ASTRID MUJICA", "ENDER GONZALEZ", "RENATO SISLEY", "OTTO HERNANDEZ", "JOSE GIL BOLIVAR", "ERICKSON GUTIERREZ", "ALEXANDER SANDOVAL", "TECNICOS", "DANIEL D'ALTA", "RAFAEL MOOR", "LEONARDO ROSAL", "TELECOMUNICACIONES M. M. F. P.", "CARLOS CASTRILLO", 
+        "CHRISTOPHER MARQUEZ", "DNEW SERVICES. OG, C.A", "KEVIN VÁSQUEZ", "JEFFERSON SEVILLA", "MICHAEL ALLEYNE", "ROSANA ZAMORA", "RICARDO DELGADO", "NICOLE RODRIGUEZ"
+    ];
+
+    function cargarAsesores() {
+        const lista = document.getElementById('listaOpciones');
+        lista.innerHTML = '';
+        ASESORES.forEach(nombre => {
+            const div = document.createElement('div');
+            div.className = 'option-item';
+            div.innerText = nombre;
+            div.onclick = () => seleccionarAsesor(nombre);
+            lista.appendChild(div);
+        });
+        document.getElementById('fecha_firma').value = new Date().toISOString().split('T')[0];
+    }
+
+    function toggleDropdown() {
+        const panel = document.getElementById('asesor-panel');
+        panel.style.display = panel.style.display === 'block' ? 'none' : 'block';
+        if (panel.style.display === 'block') document.getElementById('inputBusqueda').focus();
+    }
+
+    function filtrarLista() {
+        const filtro = document.getElementById('inputBusqueda').value.toLowerCase();
+        document.querySelectorAll('.option-item').forEach(opt => {
+            opt.classList.toggle('hidden', !opt.innerText.toLowerCase().includes(filtro));
+        });
+    }
+
+    function seleccionarAsesor(nombre) {
+        document.getElementById('asesor-trigger').innerText = nombre;
+        document.getElementById('asesor').value = nombre; 
+        document.getElementById('asesor-panel').style.display = 'none';
+    }
+
+    window.onclick = function(e) {
+        if (!e.target.closest('.searchable-container')) {
+            document.getElementById('asesor-panel').style.display = 'none';
+        }
+    }
+
+    window.onload = cargarAsesores;
+
+    function gestionarContrato() {
+        const tipo = document.getElementById('tipo_contrato').value;
+        document.querySelectorAll('.input-group, h3, .grid, #seccion_suscripcion, #seccion_salud').forEach(el => el.style.display = '');
+
+        if (tipo === "MUDANZA") {
+            ['group_clase', 'group_ont', 'group_migrado', 'group_obs_router'].forEach(id => {
+                let el = document.getElementById(id); if(el) el.style.display = 'none';
+            });
+            document.getElementById('seccion_suscripcion').style.display = 'none';
+            document.getElementById('seccion_salud').style.display = 'none';
+        } else if (tipo === "SOFT") {
+            document.getElementById('group_fecha_firma').style.display = 'none';
+            ['group_municipio', 'group_urbanismo', 'group_calle', 'group_ci', 'group_cf', 'group_residencia', 'group_edificio', 'group_casa', 'group_enlace'].forEach(id => {
+                let el = document.getElementById(id); if(el) el.style.display = 'none';
+            });
+            document.getElementById('h3_tecnico').style.display = 'none';
+            document.getElementById('grid_tecnico').style.display = 'none';
+            document.getElementById('group_obs_router').style.display = 'none';
+            document.getElementById('seccion_salud').style.display = 'none';
+        } else {
+            gestionarSalud();
+        }
+    }
+
+    function gestionarSalud() {
+        const velocidad = document.getElementById('velocidad').value;
+        const seccionSalud = document.getElementById('seccion_salud');
+        seccionSalud.style.display = 'none';
+        document.querySelectorAll('.beneficiario-extra').forEach(div => div.style.display = 'none');
+
+        if (velocidad.includes('400') || velocidad.includes('500')) {
+            seccionSalud.style.display = 'block';
+            document.getElementById('sec_b2').style.display = 'block';
+        } else if (velocidad.includes('600') || velocidad.includes('800')) {
+            seccionSalud.style.display = 'block';
+            document.getElementById('sec_b2').style.display = 'block';
+            document.getElementById('sec_b3').style.display = 'block';
+        }
+    }
+
+    function construirTextoPlantilla() {
+        const d = {};
+        let faltantes = [];
+
+        document.querySelectorAll('input, select, textarea').forEach(el => {
+            const esVisible = el.offsetParent !== null || el.id === 'asesor';
+            if (el.hasAttribute('required') && !el.value.trim() && esVisible) {
+                faltantes.push(el.id);
+            }
+            d[el.id] = el.value.trim();
+        });
+
+        if (faltantes.length > 0) {
+            alert("⚠️ Por favor completa los campos obligatorios antes de generar.");
+            return null;
+        }
+
+        const docFinal = (d.prefijo_documento || "V-") + d.documento;
+
+        let titulo = "*NUEVO CONTRATO NETUNO*";
+        if (d.tipo_contrato === "RECUPERADO HARD") titulo = "*RECUPERADO HARD*";
+        else if (d.tipo_contrato === "MUDANZA") titulo = "*MUDANZA NETUNO*";
+        else if (d.tipo_contrato === "SOFT") titulo = "*CONTRATO SOFT NETUNO*";
+        else if (d.tipo_contrato === "RECONEXION - BAJA VOLUNTARIA") titulo = "*RECONEXION BAJA VOLUNTARIA*";
+
+        let msg = `${titulo}\n\n`;
+        msg += `✅ *Operadora:* ${d.operadora}\n`;
+        msg += `✅ *Asesor:* ${d.asesor}\n`;
+        msg += `✅ *Cliente:* ${d.nombre}\n`;
+        msg += `✅ *Clase:* ${d.clase || 'RESIDENCIAL'}\n`;
+        msg += `✅ *Documento de identidad:* ${docFinal}\n`;
+        msg += `✅ *Plan:* ${d.velocidad || '100mb'}\n`;
+        msg += `✅ *ONT:* ${d.ont || 'SIN WI-FI'}\n`;
+        msg += `✅ *Monto:* ${d.monto || '0.00'}\n`;
+        msg += `✅ *Fecha de Firma:* ${d.fecha_firma}\n`;
+        msg += `✅ *Correo electrónico:* ${d.correo}\n`;
+        msg += `✅ *Teléfono 1:* ${d.tel1}\n`;
+        msg += `✅ *Teléfono 2:* ${d.tel2 || 'NA'}\n`;
+        msg += `✅ *Municipio:* ${d.municipio || 'NA'}\n`;
+        msg += `✅ *Urbanismo:* ${d.urbanismo || 'NA'}\n`;
+        msg += `✅ *Sector:* ${d.sector || 'NA'}\n`;
+        msg += `✅ *Calle Principal:* ${d.calle_principal || 'NA'}\n`;
+        msg += `✅ *Residencia:* ${d.residencia || 'NA'}\n`;
+        msg += `✅ *Edificio:* ${d.edificio || 'NA'}\n`;
+        msg += `✅ *CI:* ${d.ci || 'NA'}\n`;
+        msg += `✅ *CF:* ${d.cf || 'NA'}\n`;
+        msg += `✅ *Casa/Piso/Apto:* ${d.casa_apto || 'NA'}\n`;
+        msg += `✅ *Enlace:* ${d.enlace || 'NA'}\n`;
+        msg += `✅ *Promocion:* ${d.promocion || 'NA'}\n`;
+        msg += `✅ *Costo instalación:* ${d.instalacion || 'gratis'}\n`;
+        msg += `✅ *Tipo de red:* ${d.tipo_red || 'NETUNO'}\n`;
+        msg += `✅ *Observacion del router:* ${d.obs_router || 'NA'}\n`;
+        msg += `✅ *Medio de pago:* ${d.medio_pago || 'Pago Movil'}\n`;
+        msg += `✅ *Tasa BCV:* ${d.tasa_bcv || 'NA'}\n`;
+        msg += `✅ *migrado de:* ${d.migrado_de || 'n/a'}\n`;
+
+        if (document.getElementById('seccion_salud').style.display !== 'none' && d.b1_nombre) {
+            msg += `\n🚑 *DATOS DE SALUD*\n`;
+            msg += `*BENEFICIARIO PRINCIPAL*\n`;
+            msg += `✅ *Nombres y apellidos:* ${d.b1_nombre}\n`;
+            msg += `✅ *Documento de identidad:* ${(d.prefijo_b1_documento || 'V-') + d.b1_documento}\n`;
+            msg += `✅ *Fecha de nacimiento:* ${d.b1_fecha}\n`;
+            msg += `✅ *Sexo:* ${d.b1_sexo}\n`;
+            msg += `✅ *Número de teléfono:* ${d.b1_tel}\n`;
+
+            if (document.getElementById('sec_b2').style.display !== 'none' && d.b2_nombre) {
+                msg += `\n1️⃣ *BENEFICIARIO ADICIONAL*\n`;
+                msg += `✅ *Nombres y apellidos:* ${d.b2_nombre}\n`;
+                msg += `✅ *Parentesco:* ${d.b2_parentesco}\n`;
+                msg += `✅ *Documento de identidad:* ${(d.prefijo_b2_documento || 'V-') + d.b2_documento}\n`;
+                msg += `✅ *Fecha de nacimiento:* ${d.b2_fecha}\n`;
+            }
+        }
+
+        return msg;
+    }
+
+    function procesarAccion(tipo) {
+        const texto = construirTextoPlantilla();
+        if (!texto) return;
+
+        if (tipo === 'whatsapp') {
+            window.open(`https://api.whatsapp.com/send?text=${encodeURIComponent(texto)}`);
+        } else if (tipo === 'telegram') {
+            window.open(`https://t.me/share/url?url=&text=${encodeURIComponent(texto)}`);
+        } else if (tipo === 'copiar') {
+            navigator.clipboard.writeText(texto).then(() => {
+                mostrarToast();
+            }).catch(() => {
+                alert("No se pudo copiar automáticamente. Usa WhatsApp o Telegram.");
+            });
+        }
+    }
+
+    function mostrarToast() {
+        const toast = document.getElementById("toast");
+        toast.className = "show";
+        setTimeout(() => { toast.className = toast.className.replace("show", ""); }, 3000);
+    }
+</script>
+</body>
+</html>
