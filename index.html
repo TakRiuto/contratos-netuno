@@ -19,7 +19,6 @@
             --primary-glow: rgba(0, 163, 224, 0.25);
             --text-main: #f1f5f9;
             --text-muted: #8290a5;
-            --text-faint: #475569;
             --wa-green: #10b981;
             --tg-blue: #0284c7;
             --amber-accent: #f59e0b;
@@ -39,12 +38,11 @@
             -webkit-font-smoothing: antialiased;
         }
 
-        /* Topbar sutil */
         .topbar {
-            background: rgba(14, 18, 27, 0.85);
+            background: rgba(14, 18, 27, 0.88);
             backdrop-filter: blur(16px);
             border-bottom: 1px solid var(--border-subtle);
-            padding: 14px 20px;
+            padding: 12px 20px;
             position: sticky;
             top: 0;
             z-index: 500;
@@ -59,10 +57,7 @@
             gap: 12px;
         }
 
-        .brand img {
-            height: 28px;
-            width: auto;
-        }
+        .brand img { height: 26px; width: auto; }
 
         .brand-badge {
             font-family: var(--font-mono);
@@ -74,36 +69,33 @@
             padding: 2px 8px;
             border-radius: 6px;
             text-transform: uppercase;
-            letter-spacing: 0.05em;
         }
 
         .wrapper {
             max-width: 860px;
-            margin: 24px auto 0 auto;
-            padding: 0 16px;
+            margin: 20px auto 0 auto;
+            padding: 0 14px;
         }
 
-        /* Secciones tipo Bloque de Sistema */
         .section-panel {
             background: var(--bg-surface);
             border: 1px solid var(--border-subtle);
             border-radius: 14px;
-            padding: 20px;
-            margin-bottom: 16px;
-            transition: border-color 0.2s;
+            padding: 18px;
+            margin-bottom: 14px;
         }
 
         .section-panel:focus-within {
-            border-color: rgba(0, 163, 224, 0.5);
+            border-color: rgba(0, 163, 224, 0.45);
         }
 
         .section-header {
             display: flex;
             align-items: center;
             gap: 10px;
-            margin-bottom: 18px;
+            margin-bottom: 16px;
             border-bottom: 1px solid var(--border-subtle);
-            padding-bottom: 12px;
+            padding-bottom: 10px;
         }
 
         .section-num {
@@ -121,10 +113,10 @@
         }
 
         .section-title {
-            font-size: 12.5px;
+            font-size: 12px;
             font-weight: 700;
             text-transform: uppercase;
-            letter-spacing: 0.05em;
+            letter-spacing: 0.04em;
             color: var(--text-main);
         }
 
@@ -137,7 +129,13 @@
         .input-group {
             display: flex;
             flex-direction: column;
-            gap: 6px;
+            gap: 5px;
+        }
+
+        .label-row {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
         }
 
         label {
@@ -145,7 +143,25 @@
             font-weight: 600;
             color: var(--text-muted);
             text-transform: uppercase;
-            letter-spacing: 0.04em;
+            letter-spacing: 0.03em;
+        }
+
+        /* Píldora de activación rápida N/A */
+        .na-pill {
+            background: #1e2638;
+            color: #94a3b8;
+            border: 1px solid #334155;
+            font-size: 9px;
+            font-weight: 700;
+            padding: 2px 7px;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: all 0.15s;
+        }
+        .na-pill:hover, .na-pill.active {
+            background: var(--primary);
+            color: white;
+            border-color: var(--primary);
         }
 
         input, select, textarea, .custom-select-trigger {
@@ -176,7 +192,7 @@
             padding-right: 32px;
         }
 
-        textarea { resize: vertical; min-height: 56px; }
+        textarea { resize: vertical; min-height: 54px; }
 
         /* Buscador Asesores */
         .searchable-container { position: relative; width: 100%; }
@@ -222,22 +238,22 @@
 
         #seccion_salud, .beneficiario-extra { display: none; }
 
-        /* Barra de Acción Flotante Inferior */
+        /* Barra Inferior */
         .dock-bar {
             position: fixed;
-            bottom: 16px;
+            bottom: 14px;
             left: 50%;
             transform: translateX(-50%);
-            width: calc(100% - 32px);
+            width: calc(100% - 28px);
             max-width: 860px;
-            background: rgba(14, 18, 27, 0.92);
+            background: rgba(14, 18, 27, 0.94);
             backdrop-filter: blur(20px);
             border: 1px solid rgba(255, 255, 255, 0.1);
             border-radius: 14px;
-            padding: 10px 14px;
+            padding: 10px 12px;
             display: flex;
             align-items: center;
-            gap: 10px;
+            gap: 8px;
             z-index: 800;
             box-shadow: 0 16px 40px rgba(0,0,0,0.7);
         }
@@ -252,7 +268,7 @@
             font-size: 12px;
             font-weight: 700;
             text-transform: uppercase;
-            letter-spacing: 0.04em;
+            letter-spacing: 0.03em;
             display: flex;
             align-items: center;
             justify-content: center;
@@ -284,12 +300,11 @@
             color: var(--text-muted);
             border: 1px solid var(--border-subtle);
             flex: 0 0 auto;
-            width: 40px;
+            width: 38px;
             padding: 0;
         }
         .btn-reset:hover { background: rgba(239, 68, 68, 0.15); color: #ef4444; border-color: rgba(239, 68, 68, 0.4); }
 
-        /* Toast Feedback */
         #toast {
             visibility: hidden;
             min-width: 220px;
@@ -314,9 +329,9 @@
 
         @media (max-width: 600px) {
             .dock-bar { flex-wrap: wrap; bottom: 8px; }
-            .btn-action { min-width: calc(50% - 6px); font-size: 11px; padding: 10px; }
-            .btn-rand { min-width: calc(50% - 6px); }
-            .btn-reset { min-width: 100%; order: 5; height: 32px; }
+            .btn-action { min-width: calc(50% - 5px); font-size: 11px; padding: 10px; }
+            .btn-rand { min-width: calc(50% - 5px); }
+            .btn-reset { min-width: 100%; order: 5; height: 30px; }
         }
     </style>
 </head>
@@ -325,7 +340,7 @@
 <header class="topbar">
     <div class="brand">
         <img src="https://i.ibb.co/Y7fFXDCP/Logo-Net-Uno-Diapo-RIF.png" alt="Netuno">
-        <span class="brand-badge">Sistema Maestro v3.0</span>
+        <span class="brand-badge">Sistema Maestro v3.1</span>
     </div>
 </header>
 
@@ -344,7 +359,7 @@
                     <div class="custom-select-trigger" id="asesor-trigger" onclick="toggleDropdown()">Seleccione Asesor</div>
                     <div class="dropdown-panel" id="asesor-panel">
                         <div class="search-wrapper">
-                            <input type="text" id="inputBusqueda" placeholder="Escribe para buscar..." onkeyup="filtrarLista()">
+                            <input type="text" id="inputBusqueda" placeholder="Buscar asesor..." onkeyup="filtrarLista()">
                         </div>
                         <div class="options-list" id="listaOpciones"></div>
                     </div>
@@ -356,10 +371,10 @@
                 <label>Tipo de Contrato *</label>
                 <select id="tipo_contrato" required onchange="gestionarContrato()">
                     <option value="NUEVO" selected>NUEVO</option>
-                    <option value="RECUPERADO HARD">RECUPERADO HARD</option>
-                    <option value="SOFT">SOFT</option>
                     <option value="MUDANZA">MUDANZA</option>
+                    <option value="RECUPERADO HARD">RECUPERADO HARD</option>
                     <option value="RECONEXION - BAJA VOLUNTARIA">RECONEXION - BAJA VOLUNTARIA</option>
+                    <option value="SOFT">SOFT</option>
                 </select>
             </div>
 
@@ -367,15 +382,15 @@
                 <label>Supervisor *</label>
                 <select id="supervisor" required>
                     <option value="" disabled selected>Seleccione Supervisor</option>
-                    <option>TUR - BELKYS PIÑA</option>
-                    <option>TUR - YOSCARI MARQUEZ</option>
-                    <option>SAC - FRANCYS RUMBOS</option>
-                    <option>PLN - LUIS MALPICA</option>
+                    <option>LAV - GABRIEL HERNANDEZ</option>
+                    <option>LMT - ANA MACHUCA</option>
                     <option>MCY - IAN ESCOBAR</option>
                     <option>MCY - LUISIANA MENDOZA</option>
-                    <option>LMT - ANA MACHUCA</option>
-                    <option>LAV - GABRIEL HERNANDEZ</option>
+                    <option>PLN - LUIS MALPICA</option>
+                    <option>SAC - FRANCYS RUMBOS</option>
                     <option>TEJ - SUPERVISOR</option>
+                    <option>TUR - BELKYS PIÑA</option>
+                    <option>TUR - YOSCARI MARQUEZ</option>
                 </select>
             </div>
 
@@ -383,24 +398,24 @@
                 <label>Operadora *</label>
                 <select id="operadora" required>
                     <option value="" disabled selected>Seleccione Operadora</option>
-                    <option>Maracay</option>
-                    <option>Turmero</option>
-                    <option>La Victoria</option>
-                    <option>La Morita</option>
-                    <option>Palo Negro</option>
-                    <option>Samanes</option>
-                    <option>Colonia Tovar</option>
-                    <option>Tejerias</option>
-                    <option>SAC - Maracay</option>
-                    <option>SAC - Turmero</option>
-                    <option>SAC - La Victoria</option>
-                    <option>SAC - Palo Negro</option>
-                    <option>SAC - La Morita</option>
-                    <option>Cobranzas - Maracay</option>
                     <option>Cobranzas - La Morita</option>
-                    <option>Cobranzas - Palo Negro</option>
                     <option>Cobranzas - La Victoria</option>
+                    <option>Cobranzas - Maracay</option>
+                    <option>Cobranzas - Palo Negro</option>
                     <option>Cobranzas - Turmero</option>
+                    <option>Colonia Tovar</option>
+                    <option>La Morita</option>
+                    <option>La Victoria</option>
+                    <option>Maracay</option>
+                    <option>Palo Negro</option>
+                    <option>SAC - La Morita</option>
+                    <option>SAC - La Victoria</option>
+                    <option>SAC - Maracay</option>
+                    <option>SAC - Palo Negro</option>
+                    <option>SAC - Turmero</option>
+                    <option>Samanes</option>
+                    <option>Tejerias</option>
+                    <option>Turmero</option>
                 </select>
             </div>
 
@@ -420,7 +435,7 @@
         <div class="grid">
             <div class="input-group">
                 <label>Nombres y Apellidos *</label>
-                <input type="text" id="nombre" required placeholder="CARLOS EDUARDO RODRIGUEZ">
+                <input type="text" id="nombre" required placeholder="Carlos Eduardo Rodriguez">
             </div>
             <div class="input-group">
                 <label>Documento de Identidad *</label>
@@ -444,7 +459,10 @@
                 <input type="text" id="tel1" required placeholder="04121234567">
             </div>
             <div class="input-group">
-                <label>Teléfono 2 (Opcional)</label>
+                <div class="label-row">
+                    <label>Teléfono 2</label>
+                    <button type="button" class="na-pill" onclick="toggleNA('tel2')">N/A</button>
+                </div>
                 <input type="text" id="tel2" placeholder="04247654321">
             </div>
         </div>
@@ -457,16 +475,34 @@
             <div class="section-title">Ubicación y Dirección</div>
         </div>
         <div class="grid" id="grid_instalacion">
-            <div class="input-group" id="group_municipio"><label>Municipio *</label><input type="text" id="municipio" required placeholder="GIRARDOT"></div>
-            <div class="input-group" id="group_urbanismo"><label>Urbanismo *</label><input type="text" id="urbanismo" required placeholder="LOS SAMANES"></div>
-            <div class="input-group" id="group_sector"><label>Sector</label><input type="text" id="sector" placeholder="MANZANA 4 (o NA)"></div>
-            <div class="input-group" id="group_calle"><label>Calle Principal *</label><input type="text" id="calle_principal" required placeholder="AV. 3 CON CALLE 12"></div>
-            <div class="input-group" id="group_residencia"><label>Residencia / Conjunto</label><input type="text" id="residencia" placeholder="NA si no aplica"></div>
-            <div class="input-group" id="group_edificio"><label>Edificio</label><input type="text" id="edificio" placeholder="TORRE B (o NA)"></div>
-            <div class="input-group" id="group_casa"><label>Casa / Piso / Apto *</label><input type="text" id="casa_apto" required placeholder="CASA 12 / PISO 2 APTO 201"></div>
-            <div class="input-group" id="group_ci"><label>Caja Inicial (CI)</label><input type="text" id="ci" placeholder="NA si no aplica"></div>
-            <div class="input-group" id="group_cf"><label>Caja Final (CF)</label><input type="text" id="cf" placeholder="NA si no aplica"></div>
-            <div class="input-group" id="group_enlace"><label>Enlace Maps / Coordenadas</label><input type="text" id="enlace" placeholder="https://maps.app.goo.gl/... (o NA)"></div>
+            <div class="input-group" id="group_municipio"><label>Municipio *</label><input type="text" id="municipio" required placeholder="Girardot"></div>
+            <div class="input-group" id="group_urbanismo"><label>Urbanismo *</label><input type="text" id="urbanismo" required placeholder="Los Samanes"></div>
+            <div class="input-group" id="group_sector">
+                <div class="label-row"><label>Sector</label><button type="button" class="na-pill" onclick="toggleNA('sector')">N/A</button></div>
+                <input type="text" id="sector" placeholder="Manzana 4">
+            </div>
+            <div class="input-group" id="group_calle"><label>Calle Principal *</label><input type="text" id="calle_principal" required placeholder="Av. 3 Con Calle 12"></div>
+            <div class="input-group" id="group_ci">
+                <div class="label-row"><label>Calle Inicial (CI)</label><button type="button" class="na-pill" onclick="toggleNA('ci')">N/A</button></div>
+                <input type="text" id="ci" placeholder="Calle Miranda">
+            </div>
+            <div class="input-group" id="group_cf">
+                <div class="label-row"><label>Calle Final (CF)</label><button type="button" class="na-pill" onclick="toggleNA('cf')">N/A</button></div>
+                <input type="text" id="cf" placeholder="Calle Bolivar">
+            </div>
+            <div class="input-group" id="group_residencia">
+                <div class="label-row"><label>Residencia / Conjunto</label><button type="button" class="na-pill" onclick="toggleNA('residencia')">N/A</button></div>
+                <input type="text" id="residencia" placeholder="Res. Las Flores">
+            </div>
+            <div class="input-group" id="group_edificio">
+                <div class="label-row"><label>Edificio</label><button type="button" class="na-pill" onclick="toggleNA('edificio')">N/A</button></div>
+                <input type="text" id="edificio" placeholder="Torre B">
+            </div>
+            <div class="input-group" id="group_casa"><label>Casa / Piso / Apto *</label><input type="text" id="casa_apto" required placeholder="Casa 12 / Piso 2 Apto 201"></div>
+            <div class="input-group" id="group_enlace">
+                <div class="label-row"><label>Enlace Maps / Coordenadas</label><button type="button" class="na-pill" onclick="toggleNA('enlace')">N/A</button></div>
+                <input type="text" id="enlace" placeholder="https://maps.app.goo.gl/...">
+            </div>
         </div>
     </section>
 
@@ -480,8 +516,8 @@
             <div class="input-group" id="group_clase">
                 <label>Clase *</label>
                 <select id="clase" required>
-                    <option value="RESIDENCIAL" selected>RESIDENCIAL</option>
                     <option value="COMERCIO">COMERCIO</option>
+                    <option value="RESIDENCIAL" selected>RESIDENCIAL</option>
                 </select>
             </div>
             <div class="input-group" id="group_velocidad">
@@ -499,38 +535,51 @@
             <div class="input-group" id="group_tipo_red">
                 <label>Tipo de Red *</label>
                 <select id="tipo_red" required>
-                    <option value="NETUNO" selected>NETUNO</option>
                     <option value="COMPARTIDAS">COMPARTIDAS</option>
+                    <option value="NETUNO" selected>NETUNO</option>
                 </select>
             </div>
             <div class="input-group" id="group_ont">
                 <label>ONT *</label>
                 <select id="ont">
-                    <option value="SIN WI-FI" selected>SIN WI-FI</option>
                     <option value="CON WI-FI">CON WI-FI</option>
+                    <option value="SIN WI-FI" selected>SIN WI-FI</option>
                 </select>
             </div>
             <div class="input-group" id="group_migrado">
                 <label>Migrado de *</label>
                 <select id="migrado_de" required>
                     <option value="n/a" selected>N/A (Nueva Instalación)</option>
-                    <option value="cantv">CANTV</option>
-                    <option value="fibex">FIBEX</option>
-                    <option value="inter">INTER</option>
-                    <option value="simple">SIMPLE</option>
-                    <option value="galanet">GALANET</option>
                     <option value="360net">360 NET</option>
-                    <option value="netcomplus">NETCOM PLUS</option>
-                    <option value="multitel">MULTITEL</option>
                     <option value="aldanet">ALDANET</option>
-                    <option value="litium">LITIUM</option>
+                    <option value="cablenet">CABLENET</option>
+                    <option value="cablepar">CABLE PAR</option>
+                    <option value="cacique">CACIQUE NET</option>
+                    <option value="cantv">CANTV</option>
                     <option value="conexa">CONEXA</option>
+                    <option value="fibex">FIBEX</option>
+                    <option value="ftth">FTTH NETWORKS</option>
+                    <option value="galanet">GALANET</option>
+                    <option value="inter">INTER</option>
+                    <option value="lanonline">LAN ONLINE</option>
+                    <option value="litium">LITIUM TELECOM</option>
+                    <option value="multitel">MULTITEL</option>
+                    <option value="netcomplus">NETCOM PLUS</option>
+                    <option value="netuno_aragua">NETUNO ARAGUA</option>
+                    <option value="netven">NETVEN TELECOM</option>
+                    <option value="powerlink">POWER LINK</option>
+                    <option value="rdnet">RDNET</option>
+                    <option value="simple">SIMPLE</option>
+                    <option value="simplefibra">SIMPLE FIBRA</option>
+                    <option value="sisprot">SISPROT GLOBAL</option>
+                    <option value="tecnoven">TECNOVEN</option>
+                    <option value="wisp">WISP TECNOGER</option>
                 </select>
             </div>
         </div>
         <div class="input-group" style="margin-top: 14px;" id="group_obs_router">
-            <label>Observación del Router</label>
-            <textarea id="obs_router" rows="2" placeholder="Cliente posee router propio de doble banda..."></textarea>
+            <div class="label-row"><label>Observación del Router</label><button type="button" class="na-pill" onclick="toggleNA('obs_router')">N/A</button></div>
+            <textarea id="obs_router" rows="2" placeholder="Posee router propio Gigabit..."></textarea>
         </div>
     </section>
 
@@ -538,7 +587,7 @@
     <section class="section-panel" id="panel_pago">
         <div class="section-header">
             <div class="section-num">05</div>
-            <div class="section-title">Suscripción y Conciliación de Pago</div>
+            <div class="section-title">Suscripción y Pago</div>
         </div>
         
         <div id="seccion_suscripcion" style="margin-bottom: 16px;">
@@ -571,9 +620,9 @@
                     </select>
                 </div>
                 <div class="input-group" id="group_promocion">
-                    <label>Promoción Aplicada</label>
+                    <div class="label-row"><label>Promoción Aplicada</label><button type="button" class="na-pill" onclick="toggleNA('promocion')">N/A</button></div>
                     <select id="promocion" required>
-                        <option selected>N/A</option>
+                        <option selected value="N/A">N/A</option>
                         <option>3M x 19$</option>
                         <option>3M x 20$</option>
                         <option>3M x 39$ RC</option>
@@ -587,8 +636,9 @@
             <div class="input-group">
                 <label>Medio de Pago *</label>
                 <select id="medio_pago">
-                    <option selected>Pago Movil</option>
                     <option>Divisas Efectivo</option>
+                    <option>Efectivo Bs</option>
+                    <option selected>Pago Movil</option>
                     <option>Punto de Venta</option>
                     <option>Zelle</option>
                 </select>
@@ -602,15 +652,15 @@
                 <input type="text" id="tasa_bcv" placeholder="813.74">
             </div>
             <div class="input-group">
-                <label>Terminal</label>
+                <div class="label-row"><label>Terminal</label><button type="button" class="na-pill" onclick="toggleNA('terminal')">N/A</button></div>
                 <input type="text" id="terminal" placeholder="NA">
             </div>
             <div class="input-group">
-                <label>Lote</label>
+                <div class="label-row"><label>Lote</label><button type="button" class="na-pill" onclick="toggleNA('lote')">N/A</button></div>
                 <input type="text" id="lote" placeholder="NA">
             </div>
             <div class="input-group">
-                <label>Aprobación</label>
+                <div class="label-row"><label>Aprobación</label><button type="button" class="na-pill" onclick="toggleNA('aprobacion')">N/A</button></div>
                 <input type="text" id="aprobacion" placeholder="NA">
             </div>
         </div>
@@ -623,8 +673,8 @@
             <div class="section-title">Beneficiarios del Plan Salud</div>
         </div>
 
-        <div style="margin-bottom: 20px;">
-            <label style="color: var(--primary); margin-bottom: 10px;">Beneficiario Principal (Titular)</label>
+        <div style="margin-bottom: 18px;">
+            <label style="color: var(--primary); margin-bottom: 8px; font-weight: 700;">Beneficiario Principal (Titular)</label>
             <div class="grid">
                 <div class="input-group">
                     <label>Cédula Titular</label>
@@ -633,18 +683,18 @@
                         <input type="text" id="b1_documento" style="flex: 1;">
                     </div>
                 </div>
-                <div class="input-group"><label>Nombres/Apellidos</label><input type="text" id="b1_nombre"></div>
-                <div class="input-group"><label>Fecha Nac.</label><input type="date" id="b1_fecha"></div>
+                <div class="input-group"><label>Nombres y Apellidos</label><input type="text" id="b1_nombre"></div>
+                <div class="input-group"><label>Fecha Nacimiento</label><input type="date" id="b1_fecha"></div>
                 <div class="input-group"><label>Teléfono</label><input type="text" id="b1_tel"></div>
-                <div class="input-group"><label>Sexo</label><select id="b1_sexo"><option>M</option><option>F</option></select></div>
+                <div class="input-group"><label>Sexo</label><select id="b1_sexo"><option>F</option><option selected>M</option></select></div>
             </div>
         </div>
 
         <div id="sec_b2" class="beneficiario-extra" style="margin-bottom: 16px;">
-            <label style="color: var(--amber-accent); margin-bottom: 8px;">Beneficiario Adicional 1</label>
+            <label style="color: var(--amber-accent); margin-bottom: 8px; font-weight: 700;">Beneficiario Adicional 1</label>
             <div class="grid">
-                <div class="input-group"><label>Parentesco</label><select id="b2_parentesco"><option>HIJO</option><option>CONYUGE</option><option>MADRE</option><option>PADRE</option></select></div>
-                <div class="input-group"><label>Nombre/Apellido</label><input type="text" id="b2_nombre"></div>
+                <div class="input-group"><label>Parentesco</label><select id="b2_parentesco"><option>CONYUGE</option><option selected>HIJO</option><option>MADRE</option><option>PADRE</option></select></div>
+                <div class="input-group"><label>Nombres y Apellidos</label><input type="text" id="b2_nombre"></div>
                 <div class="input-group">
                     <label>Cédula</label>
                     <div style="display: flex; gap: 6px;">
@@ -652,16 +702,16 @@
                         <input type="text" id="b2_documento" style="flex: 1;">
                     </div>
                 </div>
-                <div class="input-group"><label>Fecha Nac.</label><input type="date" id="b2_fecha"></div>
+                <div class="input-group"><label>Fecha Nacimiento</label><input type="date" id="b2_fecha"></div>
                 <div class="input-group"><label>Teléfono</label><input type="text" id="b2_tel"></div>
             </div>
         </div>
 
         <div id="sec_b3" class="beneficiario-extra">
-            <label style="color: var(--amber-accent); margin-bottom: 8px;">Beneficiario Adicional 2</label>
+            <label style="color: var(--amber-accent); margin-bottom: 8px; font-weight: 700;">Beneficiario Adicional 2</label>
             <div class="grid">
-                <div class="input-group"><label>Parentesco</label><select id="b3_parentesco"><option>HIJO</option><option>CONYUGE</option><option>MADRE</option><option>PADRE</option></select></div>
-                <div class="input-group"><label>Nombre/Apellido</label><input type="text" id="b3_nombre"></div>
+                <div class="input-group"><label>Parentesco</label><select id="b3_parentesco"><option selected>CONYUGE</option><option>HIJO</option><option>MADRE</option><option>PADRE</option></select></div>
+                <div class="input-group"><label>Nombres y Apellidos</label><input type="text" id="b3_nombre"></div>
                 <div class="input-group">
                     <label>Cédula</label>
                     <div style="display: flex; gap: 6px;">
@@ -669,7 +719,7 @@
                         <input type="text" id="b3_documento" style="flex: 1;">
                     </div>
                 </div>
-                <div class="input-group"><label>Fecha Nac.</label><input type="date" id="b3_fecha"></div>
+                <div class="input-group"><label>Fecha Nacimiento</label><input type="date" id="b3_fecha"></div>
                 <div class="input-group"><label>Teléfono</label><input type="text" id="b3_tel"></div>
             </div>
         </div>
@@ -677,9 +727,9 @@
 
 </main>
 
-<!-- Barra Inferior de Acción Ergonómica -->
+<!-- Barra Inferior -->
 <div class="dock-bar">
-    <button class="btn-action btn-rand" title="Generar datos ficticios para pruebas" onclick="generarDatosAleatorios()">
+    <button class="btn-action btn-rand" title="Generar datos aleatorios con salud" onclick="generarDatosAleatorios()">
         🎲 Datos Demo
     </button>
     <button class="btn-action btn-copy" onclick="procesarAccion('copiar')">
@@ -699,29 +749,39 @@
 <div id="toast">✅ ¡Plantilla copiada al portapapeles!</div>
 
 <script>
+    // Asesores oficiales ordenados alfabéticamente
     const ASESORES = [
-        "YOSDARLIN MARIELIS BARRIOS AYALA", "MARIA GABRIELA BERMUDEZ DOMINGUEZ", "NEACOLLE MICHELL BLANCO RONDON", 
-        "KEYLA ANDREYNA CASTRO SILVA", "KEYARLY NICOLASA CONTRERAS ROSALES", "DUILIBERSI ESPINOZA SALAS", "BRAIN ENRIQUE FANDIÑO VALDERREY",
-        "JOSE ALEJANDRO GONZALEZ MOTA", "ANGELY LEONELY GUILLEN VILLARREAL", "ROCCI DANIELA LOPEZ FIGUERA", "GENYS ALEXANDER MARTIN APONTE",
-        "EDUARDO JOSE RIOS OROPEZA", "YAXIBITH DAYALING RIVAS MARTINEZ", "STEFHANIE CAROLINA GARCIA BARRIOS", "MAYERLING NOSLEN GARCIA TORRES", 
-        "ANTHONY DAVID GELBES BERMEJO", "NEYKARY LUCIA GONZALEZ DUARTE", "NEYALEX CARALY MORENO ALDAZORO", "ORLEANNYS DEL VALLE DIAZ ZAPATA", 
-        "BRAYAN ALEXANDER RUIZ RIVAS", "MARIANA ESPARRAGOZA", "GENESIS DIAZ", "JAIRO MENDEZ", "YENNIFER TRCONIS", 
-        "KASMIR SANTANA", "ORYANNYS OCHOA", "YDALNMY MALDONADO", "INVERSIONES MAYO", "SERVICIOS APACHE TECNOLOGY CA",
-        "TELNETWORK", "4TECH", "MARIANA YRREAZA", "DUBRASKA PALACIOS", "OSNAYERLIN BARCENAS", "YOSMERY MARQUEZ", "ADRIANA MATUTE", "ANDREINA SILVA",
-        "ANGELIMAR IDALGO", "BELKYS PIÑA", "DUBRASKA TORRES", "FERNANDO COLMENARES", "GILBERT BISAMON", "JOFREN PEREZ", "LORENA MARTINEZ", "MARIA GONZALEZ",
-        "RAFAEL MIERES", "SANTIAGO MENDEZ", "YNNELIZ ACOSTA", "AMBAR BANDRES", "CINDY BRICEÑO", "JEANMARY BRITO", "JOSE CAMPOS", "ANDREA CASTRILLO",
-        "ARGENIS GONZALEZ", "WILFREDO GRANDA", "KARLA LIRA", "DIGLEYSIS LUNA", "JOSE MENDOZA", "STEFANNY MERCADO", "JORGE MOLINA", "GERMALYS NAVAS",
-        "ROZAIDA PERDOMO", "NORELIS PINEDA", "ORIANNYS RIVAS", "ANTOINE RIVERO", "JOSE ROA", "ALEJANDRA RODRIGUEZ", "OTNIELY RONDON", "DAIBELYS SANCHEZ",
-        "GABRIEL SOSA", "YELAIN TRIAS", "NEIRA VASQUEZ", "MICHELLE VERA", "CONEXSAL, C.A", "DOMINGO BARBER", "GRUB TECHNOLOGY", "I.Y TECNISERVICIOS, C.A", "INVERSIONES CYS 2014 C.A", 
-        "TECNISOLUCIONES", "INVERSIONES SUMISERVICE, C.A", "EMPRENDIMIENTO JOSE", "ORLANDO EZEQUIEL CALANCHE ROJAS, FP", "PROYECTA, C.A", "PROYECTOS Y SOLUCIONES DT, C.A",
-        "TELECOMUNICACIONES J.M CORDERO FP", "PEDRO CORDOVA", "FIBRATEC GM C.A", "FAVIOLA BRICEÑO", "BENINGEL DIAZ", "DALKIS MEDINA", "CINTIA MENDOZA",
-        "OMAR OLIVEROS", "ANDREA SANCHEZ", "VERONICA VILLABONA", "VEDA ARAQUE", "DUYIMA CASTILLO", "GABRIELA LLAMOZAS", "YORGELIS LOYO", "YOSBERLYN MASAVE",
-        "JOHNSON MENDOZA", "ANTHONIS OSPINA", "LUIS OVALLES", "ARLINETH PEREZ", "GABRIEL PEREZ", "ENRILEIDY RAMIREZ", "RONALD SANCHEZ", "MAGALIS BLANCO",
-        "HIANA MIJARES", "EVELYN CRUZ", "DIXIA HERRERA", "ARALYS ROMERO", "RINELSIS MEDINA", "JIM RODRIGUEZ", "RJC SERV 2024 C.A",
-        "TELEFIBRAS C.A", "EMM SERVICES 2024 C.A", "CONSTRUTELS J.A.V C.A", "ANDREA CALLE", "ALEIDY CARABALLO", "AMBAR DIAZ", "MIGUEL PIÑERO", "NERJENOR, C.A", "MULTISERVICIOS M&J C.A", "DISTRIBUIDORA ZM",
-        "VALERIA", "MENDOZA", "YOELIS VILORIA", "ASTRID MUJICA", "ENDER GONZALEZ", "RENATO SISLEY", "OTTO HERNANDEZ", "JOSE GIL BOLIVAR", "ERICKSON GUTIERREZ", "ALEXANDER SANDOVAL", "TECNICOS", "DANIEL D'ALTA", "RAFAEL MOOR", "LEONARDO ROSAL", "TELECOMUNICACIONES M. M. F. P.", "CARLOS CASTRILLO", 
-        "CHRISTOPHER MARQUEZ", "DNEW SERVICES. OG, C.A", "KEVIN VÁSQUEZ", "JEFFERSON SEVILLA", "MICHAEL ALLEYNE", "ROSANA ZAMORA", "RICARDO DELGADO", "NICOLE RODRIGUEZ"
-    ];
+        "ADRIANA MATUTE", "ALEJANDRA RODRIGUEZ", "ALEIDY CARABALLO", "ALEXANDER SANDOVAL", "AMBAR BANDRES", 
+        "AMBAR DIAZ", "ANDREA CALLE", "ANDREA CASTRILLO", "ANDREA SANCHEZ", "ANDREINA SILVA", "ANGELIMAR IDALGO", 
+        "ANGELY LEONELY GUILLEN VILLARREAL", "ANTHONY DAVID GELBES BERMEJO", "ANTHONIS OSPINA", "ANTOINE RIVERO", 
+        "ARALYS ROMERO", "ARGENIS GONZALEZ", "ARLINETH PEREZ", "ASTRID MUJICA", "BELKYS PIÑA", "BENINGEL DIAZ", 
+        "BRAIN ENRIQUE FANDIÑO VALDERREY", "BRAYAN ALEXANDER RUIZ RIVAS", "CARLOS CASTRILLO", "CHRISTOPHER MARQUEZ", 
+        "CINDY BRICEÑO", "CINTIA MENDOZA", "CONEXSAL, C.A", "CONSTRUTELS J.A.V C.A", "DAIBELYS SANCHEZ", 
+        "DALKIS MEDINA", "DANIEL D'ALTA", "DIGLEYSIS LUNA", "DISTRIBUIDORA ZM", "DIXIA HERRERA", "DNEW SERVICES. OG, C.A", 
+        "DOMINGO BARBER", "DUBRASKA PALACIOS", "DUBRASKA TORRES", "DUILIBERSI ESPINOZA SALAS", "DUYIMA CASTILLO", 
+        "EDUARDO JOSE RIOS OROPEZA", "EMM SERVICES 2024 C.A", "EMPRENDIMIENTO JOSE", "ENDER GONZALEZ", "ENRILEIDY RAMIREZ", 
+        "ERICKSON GUTIERREZ", "EVELYN CRUZ", "FAVIOLA BRICEÑO", "FERNANDO COLMENARES", "FIBRATEC GM C.A", 
+        "GABRIEL PEREZ", "GABRIEL SOSA", "GABRIELA LLAMOZAS", "GENESIS DIAZ", "GENYS ALEXANDER MARTIN APONTE", 
+        "GERMALYS NAVAS", "GILBERT BISAMON", "GRUB TECHNOLOGY", "HIANA MIJARES", "I.Y TECNISERVICIOS, C.A", 
+        "INVERSIONES CYS 2014 C.A", "INVERSIONES MAYO", "INVERSIONES SUMISERVICE, C.A", "JAIRO MENDEZ", 
+        "JEANMARY BRITO", "JEFFERSON SEVILLA", "JIM RODRIGUEZ", "JOFREN PEREZ", "JOHNSON MENDOZA", "JORGE MOLINA", 
+        "JOSE ALEJANDRO GONZALEZ MOTA", "JOSE CAMPOS", "JOSE GIL BOLIVAR", "JOSE MENDOZA", "JOSE ROA", 
+        "KARLA LIRA", "KASMIR SANTANA", "KEVIN VÁSQUEZ", "KEYARLY NICOLASA CONTRERAS ROSALES", "KEYLA ANDREYNA CASTRO SILVA", 
+        "LEONARDO ROSAL", "LORENA MARTINEZ", "LUIS OVALLES", "MAGALIS BLANCO", "MARIA GABRIELA BERMUDEZ DOMINGUEZ", 
+        "MARIA GONZALEZ", "MARIANA ESPARRAGOZA", "MARIANA YRREAZA", "MAYERLING NOSLEN GARCIA TORRES", "MICHAEL ALLEYNE", 
+        "MICHELLE VERA", "MIGUEL PIÑERO", "MULTISERVICIOS M&J C.A", "NEACOLLE MICHELL BLANCO RONDON", "NEIRA VASQUEZ", 
+        "NERJENOR, C.A", "NEYALEX CARALY MORENO ALDAZORO", "NEYKARY LUCIA GONZALEZ DUARTE", "NICOLE RODRIGUEZ", 
+        "NORELIS PINEDA", "OMAR OLIVEROS", "ORIANNYS RIVAS", "ORLANDO EZEQUIEL CALANCHE ROJAS, FP", "ORLEANNYS DEL VALLE DIAZ ZAPATA", 
+        "ORYANNYS OCHOA", "OSNAYERLIN BARCENAS", "OTNIELY RONDON", "OTTO HERNANDEZ", "PEDRO CORDOVA", 
+        "PROYECTA, C.A", "PROYECTOS Y SOLUCIONES DT, C.A", "RAFAEL MIERES", "RAFAEL MOOR", "RENATO SISLEY", 
+        "RICARDO DELGADO", "RINELSIS MEDINA", "RJC SERV 2024 C.A", "ROCCI DANIELA LOPEZ FIGUERA", "RONALD SANCHEZ", 
+        "ROSANA ZAMORA", "ROZAIDA PERDOMO", "SANTIAGO MENDEZ", "SERVICIOS APACHE TECNOLOGY CA", "STEFANNY MERCADO", 
+        "STEFHANIE CAROLINA GARCIA BARRIOS", "TECNICOS", "TECNISOLUCIONES", "TELECOMUNICACIONES J.M CORDERO FP", 
+        "TELECOMUNICACIONES M. M. F. P.", "TELEFIBRAS C.A", "TELNETWORK", "VALERIA MENDOZA", "VEDA ARAQUE", 
+        "VERONICA VILLABONA", "WILFREDO GRANDA", "YAXIBITH DAYALING RIVAS MARTINEZ", "YDALNMY MALDONADO", 
+        "YELAIN TRIAS", "YENNIFER TRCONIS", "YOELIS VILORIA", "YORGELIS LOYO", "YOSBERLYN MASAVE", 
+        "YOSDARLIN MARIELIS BARRIOS AYALA", "YOSMERY MARQUEZ", "YNNELIZ ACOSTA", "4TECH"
+    ].sort((a, b) => a.localeCompare(b));
 
     function cargarAsesores() {
         const lista = document.getElementById('listaOpciones');
@@ -763,6 +823,19 @@
 
     window.onload = cargarAsesores;
 
+    // Conmutador rápido para campos que No Aplican (N/A)
+    function toggleNA(inputId) {
+        const el = document.getElementById(inputId);
+        const btn = event.currentTarget;
+        if (el.value === "NA") {
+            el.value = "";
+            btn.classList.remove('active');
+        } else {
+            el.value = "NA";
+            btn.classList.add('active');
+        }
+    }
+
     function gestionarContrato() {
         const tipo = document.getElementById('tipo_contrato').value;
         document.querySelectorAll('.input-group, #seccion_suscripcion, #seccion_salud, #panel_instalacion, #panel_tecnico').forEach(el => el.style.display = '');
@@ -801,40 +874,52 @@
         }
     }
 
-    // ===================================================================
-    // 🎲 GENERADOR INTELIGENTE DE DATOS DE PRUEBA REALISTAS
-    // ===================================================================
+    // Capitalizador estricto de palabras
+    function capitalizarPalabras(texto) {
+        if (!texto) return "";
+        let t = texto.trim();
+        if (t.toUpperCase() === "NA" || t.toUpperCase() === "N/A") return "NA";
+        return t.toLowerCase().replace(/(?:^|\s|[-/])\S/g, function(elem) {
+            return elem.toUpperCase();
+        });
+    }
+
+    // Generador Inteligente con Salud
     function generarDatosAleatorios() {
         const pick = arr => arr[Math.floor(Math.random() * arr.length)];
         const randNum = (min, max) => Math.floor(Math.random() * (max - min + 1)) + min;
 
-        const nombresFicticios = [
-            "CARLOS EDUARDO RODRIGUEZ", "MARIA FERNANDA PEREZ GOMEZ", "JOSE GREGORIO HERNANDEZ SILVA", 
-            "VALENTINA DANIELA MORALES BLANCO", "ANDRES ELOY MARTINEZ CASTILLO", "LUISIANA DEL VALLE MENDOZA", 
-            "GABRIEL ENRIQUE SOSA GUZMAN", "YOSMARY CAROLINA MARQUEZ", "DAIBELYS ROSA SANCHEZ", "JORGE LUIS MOLINA"
+        const nombresTitular = [
+            "Carlos Eduardo Rodriguez", "Maria Fernanda Perez Gomez", "Jose Gregorio Hernandez Silva", 
+            "Valentina Daniela Morales", "Andres Eloy Martinez Castillo", "Luisiana Del Valle Mendoza", 
+            "Gabriel Enrique Sosa", "Yosmary Carolina Marquez", "Daibelys Rosa Sanchez", "Jorge Luis Molina"
+        ];
+
+        const nombresBeneficiarios = [
+            "Camila Sofia Rodriguez Perez", "Santiago Alejandro Rodriguez", "Carmen Elena Gomez", 
+            "Hector Jose Morales", "Diego Armando Martinez", "Isabella Victoria Sosa"
         ];
 
         const urbanismos = [
-            { mun: "GIRARDOT", urb: "LOS SAMANES", sec: "SECTOR 2", calle: "CALLE 14", casa: "CASA 24" },
-            { mun: "GIRARDOT", urb: "CALICANTO", sec: "NA", calle: "AV. 19 DE ABRIL", casa: "EDIF. RIVIERA PISO 4 APTO 4B" },
-            { mun: "MBI", urb: "CAÑA DE AZUCAR", sec: "SECTOR 4", calle: "PPAL DE CAÑA DE AZUCAR", casa: "VEREDA 12 CASA 5" },
-            { mun: "SANTIAGO MARIÑO", urb: "TURMERO CENTRO", sec: "NA", calle: "CALLE MARIÑO", casa: "CASA 102" },
-            { mun: "SUCRE", urb: "CAGUA", sec: "ZONA INDUSTRIAL", calle: "CALLE COMERCIO", casa: "LOCAL 3" }
+            { mun: "Girardot", urb: "Los Samanes", sec: "Sector 2", calle: "Calle 14", ci: "Calle 13", cf: "Calle 15", casa: "Casa 24" },
+            { mun: "Girardot", urb: "Calicanto", sec: "NA", calle: "Av. 19 De Abril", ci: "Calle Lopez Aveledo", cf: "Calle Junin", casa: "Piso 4 Apto 4B" },
+            { mun: "MBI", urb: "Caña De Azucar", sec: "Sector 4", calle: "Ppal De Caña De Azucar", ci: "Vereda 11", cf: "Vereda 13", casa: "Vereda 12 Casa 5" },
+            { mun: "Santiago Mariño", urb: "Turmero Centro", sec: "NA", calle: "Calle Mariño", ci: "Calle Rivas", cf: "Calle Bolivar", casa: "Casa 102" },
+            { mun: "Sucre", urb: "Cagua", sec: "NA", calle: "Calle Comercio", ci: "Calle Sucre", cf: "Calle Froilan Correa", casa: "Local 3" }
         ];
 
         const loc = pick(urbanismos);
         const asesorAleatorio = pick(ASESORES);
 
-        // Asignación de Valores
         seleccionarAsesor(asesorAleatorio);
         document.getElementById('supervisor').value = pick(["MCY - IAN ESCOBAR", "MCY - LUISIANA MENDOZA", "TUR - BELKYS PIÑA", "PLN - LUIS MALPICA"]);
         document.getElementById('operadora').value = pick(["Maracay", "Turmero", "La Morita", "Palo Negro"]);
-        document.getElementById('nombre').value = pick(nombresFicticios);
+        document.getElementById('nombre').value = pick(nombresTitular);
         
         document.getElementById('prefijo_documento').value = pick(["V-", "V-", "V-", "E-", "J-"]);
-        document.getElementById('documento').value = randNum(11000000, 29000000);
+        document.getElementById('documento').value = randNum(12000000, 28000000);
         
-        document.getElementById('correo').value = "prueba.cliente" + randNum(10, 99) + "@gmail.com";
+        document.getElementById('correo').value = "cliente.prueba" + randNum(10, 99) + "@gmail.com";
         document.getElementById('tel1').value = pick(["0412", "0414", "0424", "0416"]) + randNum(1000000, 9999999);
         document.getElementById('tel2').value = pick(["0412", "0414", "0424"]) + randNum(1000000, 9999999);
 
@@ -842,15 +927,16 @@
         document.getElementById('urbanismo').value = loc.urb;
         document.getElementById('sector').value = loc.sec;
         document.getElementById('calle_principal').value = loc.calle;
+        document.getElementById('ci').value = loc.ci;
+        document.getElementById('cf').value = loc.cf;
         document.getElementById('residencia').value = "NA";
         document.getElementById('edificio').value = "NA";
         document.getElementById('casa_apto').value = loc.casa;
-        document.getElementById('ci').value = "CAJA-" + randNum(1, 40);
-        document.getElementById('cf').value = "CAJA-" + randNum(1, 40);
         document.getElementById('enlace').value = "https://maps.app.goo.gl/" + randNum(100000, 999999);
 
         document.getElementById('clase').value = "RESIDENCIAL";
-        document.getElementById('velocidad').value = pick(["100mb", "400mb", "600mb"]);
+        // Seleccionamos un plan con salud para rellenarla
+        document.getElementById('velocidad').value = pick(["400mb", "600mb"]);
         document.getElementById('tipo_red').value = pick(["NETUNO", "COMPARTIDAS"]);
         document.getElementById('ont').value = pick(["SIN WI-FI", "CON WI-FI"]);
         document.getElementById('migrado_de').value = pick(["n/a", "cantv", "fibex", "inter"]);
@@ -864,21 +950,32 @@
 
         gestionarSalud();
 
-        // Si activó salud, rellena beneficiarios
+        // Relleno dinámico de salud
         if (document.getElementById('seccion_salud').style.display !== 'none') {
             document.getElementById('b1_nombre').value = document.getElementById('nombre').value;
             document.getElementById('b1_documento').value = document.getElementById('documento').value;
-            document.getElementById('b1_fecha').value = "1988-06-15";
+            document.getElementById('b1_fecha').value = "1985-04-12";
             document.getElementById('b1_tel').value = document.getElementById('tel1').value;
-            document.getElementById('b1_correo').value = document.getElementById('correo').value;
+            document.getElementById('b1_sexo').value = pick(["M", "F"]);
+
+            document.getElementById('b2_nombre').value = pick(nombresBeneficiarios);
+            document.getElementById('b2_documento').value = randNum(28000000, 34000000);
+            document.getElementById('b2_fecha').value = "2010-09-20";
+            document.getElementById('b2_tel').value = document.getElementById('tel1').value;
+            document.getElementById('b2_parentesco').value = "HIJO";
+
+            if (document.getElementById('sec_b3').style.display !== 'none') {
+                document.getElementById('b3_nombre').value = pick(nombresBeneficiarios);
+                document.getElementById('b3_documento').value = randNum(14000000, 20000000);
+                document.getElementById('b3_fecha').value = "1988-11-05";
+                document.getElementById('b3_tel').value = document.getElementById('tel2').value;
+                document.getElementById('b3_parentesco').value = "CONYUGE";
+            }
         }
 
-        mostrarToast("🎲 ¡Formulario cargado con datos de demo!");
+        mostrarToast("🎲 ¡Demo generado con Salud y Ubicación!");
     }
 
-    // ===================================================================
-    // 📋 GENERACIÓN EXACTA DE PLANTILLA CLONADA
-    // ===================================================================
     function construirTextoPlantilla() {
         const d = {};
         let faltantes = [];
@@ -907,38 +1004,38 @@
         let msg = `${tituloMsg}\n\n`;
 
         if (d.tipo_contrato === "SOFT") {
-            msg += `✅ *Operadora:* ${d.operadora}\n`;
-            msg += `✅ *Asesor:* ${d.asesor}\n`;
+            msg += `✅ *Operadora:* ${capitalizarPalabras(d.operadora)}\n`;
+            msg += `✅ *Asesor:* ${capitalizarPalabras(d.asesor)}\n`;
             msg += `✅ *Supervisor:* ${d.supervisor}\n`;
-            msg += `✅ *Cliente:* ${d.nombre}\n`;
+            msg += `✅ *Cliente:* ${capitalizarPalabras(d.nombre)}\n`;
             msg += `✅ *Clase:* ${d.clase}\n`;
             msg += `✅ *Documento de identidad:* ${docFinal}\n`;
-            msg += `✅ *Correo:* ${d.correo}\n`;
+            msg += `✅ *Correo:* ${d.correo.toLowerCase()}\n`;
             msg += `✅ *Teléfono 1:* ${d.tel1}\n`;
             msg += `✅ *Teléfono 2:* ${d.tel2 || 'NA'}\n`;
-            msg += `✅ *Sector:* ${d.sector || 'NA'}\n`;
+            msg += `✅ *Sector:* ${capitalizarPalabras(d.sector) || 'NA'}\n`;
             msg += `✅ *Promoción:* ${d.promocion}\n`;
             msg += `✅ *Monto:* ${d.monto}\n`;
         } else if (d.tipo_contrato === "MUDANZA") {
-            msg += `✅ *Operadora:* ${d.operadora}\n`;
-            msg += `✅ *Asesor:* ${d.asesor}\n`;
-            msg += `✅ *Cliente:* ${d.nombre}\n`;
+            msg += `✅ *Operadora:* ${capitalizarPalabras(d.operadora)}\n`;
+            msg += `✅ *Asesor:* ${capitalizarPalabras(d.asesor)}\n`;
+            msg += `✅ *Cliente:* ${capitalizarPalabras(d.nombre)}\n`;
             msg += `✅ *Clase:* ${d.clase}\n`;
             msg += `✅ *Documento de identidad:* ${docFinal}\n`;
             msg += `✅ *Monto:* ${d.monto}\n`;
             msg += `✅ *Fecha de Firma:* ${d.fecha_firma}\n`;
-            msg += `✅ *Correo electrónico:* ${d.correo}\n`;
+            msg += `✅ *Correo electrónico:* ${d.correo.toLowerCase()}\n`;
             msg += `✅ *Teléfono 1:* ${d.tel1}\n`;
             msg += `✅ *Teléfono 2:* ${d.tel2 || 'NA'}\n`;
-            msg += `✅ *Municipio:* ${d.municipio}\n`;
-            msg += `✅ *Urbanismo:* ${d.urbanismo}\n`;
-            msg += `✅ *Sector:* ${d.sector || 'NA'}\n`;
-            msg += `✅ *Calle Principal:* ${d.calle_principal}\n`;
-            msg += `✅ *Residencia:* ${d.residencia || 'NA'}\n`;
-            msg += `✅ *Edificio:* ${d.edificio || 'NA'}\n`;
-            msg += `✅ *CI:* ${d.ci || 'NA'}\n`;
-            msg += `✅ *CF:* ${d.cf || 'NA'}\n`;
-            msg += `✅ *Casa/Piso/Apto:* ${d.casa_apto}\n`;
+            msg += `✅ *Municipio:* ${capitalizarPalabras(d.municipio)}\n`;
+            msg += `✅ *Urbanismo:* ${capitalizarPalabras(d.urbanismo)}\n`;
+            msg += `✅ *Sector:* ${capitalizarPalabras(d.sector) || 'NA'}\n`;
+            msg += `✅ *Calle Principal:* ${capitalizarPalabras(d.calle_principal)}\n`;
+            msg += `✅ *Residencia:* ${capitalizarPalabras(d.residencia) || 'NA'}\n`;
+            msg += `✅ *Edificio:* ${capitalizarPalabras(d.edificio) || 'NA'}\n`;
+            msg += `✅ *CI:* ${capitalizarPalabras(d.ci) || 'NA'}\n`;
+            msg += `✅ *CF:* ${capitalizarPalabras(d.cf) || 'NA'}\n`;
+            msg += `✅ *Casa/Piso/Apto:* ${capitalizarPalabras(d.casa_apto)}\n`;
             msg += `✅ *Enlace:* ${d.enlace || 'NA'}\n`;
             msg += `✅ *Tipo de red:* ${d.tipo_red}\n`;
             msg += `✅ *Plan:* ${d.velocidad}\n`;
@@ -949,32 +1046,32 @@
             msg += `✅ *Aprobacion:* ${d.aprobacion || 'NA'}\n`;
             msg += `✅ *Tasa BCV:* ${d.tasa_bcv || 'NA'}\n`;
         } else {
-            msg += `✅ *Operadora:* ${d.operadora}\n`;
-            msg += `✅ *Asesor:* ${d.asesor}\n`;
-            msg += `✅ *Cliente:* ${d.nombre}\n`;
+            msg += `✅ *Operadora:* ${capitalizarPalabras(d.operadora)}\n`;
+            msg += `✅ *Asesor:* ${capitalizarPalabras(d.asesor)}\n`;
+            msg += `✅ *Cliente:* ${capitalizarPalabras(d.nombre)}\n`;
             msg += `✅ *Clase:* ${d.clase}\n`;
             msg += `✅ *Documento de identidad:* ${docFinal}\n`;
             msg += `✅ *Plan:* ${d.velocidad}\n`;
             msg += `✅ *ONT:* ${d.ont}\n`;
             msg += `✅ *Monto:* ${d.monto}\n`;
             msg += `✅ *Fecha de Firma:* ${d.fecha_firma}\n`;
-            msg += `✅ *Correo electrónico:* ${d.correo}\n`;
+            msg += `✅ *Correo electrónico:* ${d.correo.toLowerCase()}\n`;
             msg += `✅ *Teléfono 1:* ${d.tel1}\n`;
             msg += `✅ *Teléfono 2:* ${d.tel2 || 'NA'}\n`;
-            msg += `✅ *Municipio:* ${d.municipio}\n`;
-            msg += `✅ *Urbanismo:* ${d.urbanismo}\n`;
-            msg += `✅ *Sector:* ${d.sector || 'NA'}\n`;
-            msg += `✅ *Calle Principal:* ${d.calle_principal}\n`;
-            msg += `✅ *Residencia:* ${d.residencia || 'NA'}\n`;
-            msg += `✅ *Edificio:* ${d.edificio || 'NA'}\n`;
-            msg += `✅ *CI:* ${d.ci || 'NA'}\n`;
-            msg += `✅ *CF:* ${d.cf || 'NA'}\n`;
-            msg += `✅ *Casa/Piso/Apto:* ${d.casa_apto}\n`;
+            msg += `✅ *Municipio:* ${capitalizarPalabras(d.municipio)}\n`;
+            msg += `✅ *Urbanismo:* ${capitalizarPalabras(d.urbanismo)}\n`;
+            msg += `✅ *Sector:* ${capitalizarPalabras(d.sector) || 'NA'}\n`;
+            msg += `✅ *Calle Principal:* ${capitalizarPalabras(d.calle_principal)}\n`;
+            msg += `✅ *Residencia:* ${capitalizarPalabras(d.residencia) || 'NA'}\n`;
+            msg += `✅ *Edificio:* ${capitalizarPalabras(d.edificio) || 'NA'}\n`;
+            msg += `✅ *CI:* ${capitalizarPalabras(d.ci) || 'NA'}\n`;
+            msg += `✅ *CF:* ${capitalizarPalabras(d.cf) || 'NA'}\n`;
+            msg += `✅ *Casa/Piso/Apto:* ${capitalizarPalabras(d.casa_apto)}\n`;
             msg += `✅ *Enlace:* ${d.enlace || 'NA'}\n`;
             msg += `✅ *Promocion:* ${d.promocion}\n`;
             msg += `✅ *Costo instalación:* ${d.instalacion}\n`;
             msg += `✅ *Tipo de red:* ${d.tipo_red}\n`;
-            msg += `✅ *Observacion del router:* ${d.obs_router || 'NA'}\n`;
+            msg += `✅ *Observacion del router:* ${capitalizarPalabras(d.obs_router) || 'NA'}\n`;
             msg += `✅ *Medio de pago:* ${d.medio_pago}\n`;
             msg += `✅ *Datos del Punto de Venta:*\n`;
             msg += `✅ *Terminal:* ${d.terminal || 'NA'}\n`;
@@ -987,17 +1084,26 @@
         if (document.getElementById('seccion_salud').style.display !== 'none' && d.b1_nombre) {
             msg += `\n🚑 *DATOS DE SALUD*\n`;
             msg += `*BENEFICIARIO PRINCIPAL*\n`;
-            msg += `✅ *Nombres y apellidos:* ${d.b1_nombre}\n`;
+            msg += `✅ *Nombres y apellidos:* ${capitalizarPalabras(d.b1_nombre)}\n`;
             msg += `✅ *Documento de identidad:* ${(d.prefijo_b1_documento || 'V-') + d.b1_documento}\n`;
             msg += `✅ *Fecha de nacimiento:* ${d.b1_fecha}\n`;
+            msg += `✅ *Sexo:* ${d.b1_sexo}\n`;
             msg += `✅ *Número de teléfono:* ${d.b1_tel}\n`;
 
             if (document.getElementById('sec_b2').style.display !== 'none' && d.b2_nombre) {
                 msg += `\n1️⃣ *BENEFICIARIO ADICIONAL*\n`;
-                msg += `✅ *Nombres y apellidos:* ${d.b2_nombre}\n`;
+                msg += `✅ *Nombres y apellidos:* ${capitalizarPalabras(d.b2_nombre)}\n`;
                 msg += `✅ *Parentesco:* ${d.b2_parentesco}\n`;
                 msg += `✅ *Documento de identidad:* ${(d.prefijo_b2_documento || 'V-') + d.b2_documento}\n`;
                 msg += `✅ *Fecha de nacimiento:* ${d.b2_fecha}\n`;
+            }
+
+            if (document.getElementById('sec_b3').style.display !== 'none' && d.b3_nombre) {
+                msg += `\n2️⃣ *BENEFICIARIO ADICIONAL*\n`;
+                msg += `✅ *Nombres y apellidos:* ${capitalizarPalabras(d.b3_nombre)}\n`;
+                msg += `✅ *Parentesco:* ${d.b3_parentesco}\n`;
+                msg += `✅ *Documento de identidad:* ${(d.prefijo_b3_documento || 'V-') + d.b3_documento}\n`;
+                msg += `✅ *Fecha de nacimiento:* ${d.b3_fecha}\n`;
             }
         }
 
@@ -1014,9 +1120,9 @@
             window.open(`https://t.me/share/url?url=&text=${encodeURIComponent(texto)}`);
         } else if (tipo === 'copiar') {
             navigator.clipboard.writeText(texto).then(() => {
-                mostrarToast("📋 ¡Plantilla copiada al portapapeles!");
+                mostrarToast("📋 ¡Plantilla copiada con éxito!");
             }).catch(() => {
-                alert("No se pudo copiar automáticamente. Usa WhatsApp o Telegram.");
+                alert("Usa WhatsApp o Telegram para compartir directamente.");
             });
         }
     }
