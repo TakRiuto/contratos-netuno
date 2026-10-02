@@ -823,16 +823,27 @@
 
     window.onload = cargarAsesores;
 
-    // Conmutador rápido para campos que No Aplican (N/A)
-    function toggleNA(inputId) {
+    // Conmutador rápido y seguro para N/A
+    function toggleNA(inputId, btn) {
         const el = document.getElementById(inputId);
-        const btn = event.currentTarget;
-        if (el.value === "NA") {
+        if (!el) return;
+
+        // Si no se pasó btn directamente, intentamos capturarlo
+        if (!btn && window.event) {
+            btn = window.event.target.closest('.na-pill');
+        }
+
+        // Evaluamos si el botón ya está activo
+        const estaActivo = btn ? btn.classList.contains('active') : (el.value.toUpperCase() === "NA" || el.value.toUpperCase() === "N/A");
+
+        if (estaActivo) {
+            // 🔄 DESMARCAR: Limpia el texto y apaga el botón
             el.value = "";
-            btn.classList.remove('active');
+            if (btn) btn.classList.remove('active');
         } else {
+            // ✅ MARCAR: Coloca "NA" y enciende el botón
             el.value = "NA";
-            btn.classList.add('active');
+            if (btn) btn.classList.add('active');
         }
     }
 
@@ -1078,7 +1089,7 @@
             msg += `✅ *Lote:* ${d.lote || 'NA'}\n`;
             msg += `✅ *Aprobacion:* ${d.aprobacion || 'NA'}\n`;
             msg += `✅ *Tasa BCV:* ${d.tasa_bcv || 'NA'}\n`;
-            msg += `✅ *migrado de:* ${d.migrado_de}\n`;
+            msg += `✅ *Migrado de:* ${d.migrado_de}\n`;
         }
 
         if (document.getElementById('seccion_salud').style.display !== 'none' && d.b1_nombre) {
