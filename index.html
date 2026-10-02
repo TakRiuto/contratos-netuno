@@ -146,7 +146,6 @@
             letter-spacing: 0.03em;
         }
 
-        /* Píldora de activación rápida N/A */
         .na-pill {
             background: #1e2638;
             color: #94a3b8;
@@ -461,7 +460,7 @@
             <div class="input-group">
                 <div class="label-row">
                     <label>Teléfono 2</label>
-                    <button type="button" class="na-pill" onclick="toggleNA('tel2')">N/A</button>
+                    <button type="button" class="na-pill" onclick="toggleNA('tel2', this)">N/A</button>
                 </div>
                 <input type="text" id="tel2" placeholder="04247654321">
             </div>
@@ -478,29 +477,32 @@
             <div class="input-group" id="group_municipio"><label>Municipio *</label><input type="text" id="municipio" required placeholder="Girardot"></div>
             <div class="input-group" id="group_urbanismo"><label>Urbanismo *</label><input type="text" id="urbanismo" required placeholder="Los Samanes"></div>
             <div class="input-group" id="group_sector">
-                <div class="label-row"><label>Sector</label><button type="button" class="na-pill" onclick="toggleNA('sector')">N/A</button></div>
+                <div class="label-row"><label>Sector</label><button type="button" class="na-pill" onclick="toggleNA('sector', this)">N/A</button></div>
                 <input type="text" id="sector" placeholder="Manzana 4">
             </div>
             <div class="input-group" id="group_calle"><label>Calle Principal *</label><input type="text" id="calle_principal" required placeholder="Av. 3 Con Calle 12"></div>
+            
+            <!-- CI y CF: AHORA ESTRICTAMENTE OBLIGATORIOS -->
             <div class="input-group" id="group_ci">
-                <div class="label-row"><label>Calle Inicial (CI)</label><button type="button" class="na-pill" onclick="toggleNA('ci')">N/A</button></div>
-                <input type="text" id="ci" placeholder="Calle Miranda">
+                <label>Calle Inicial (CI) *</label>
+                <input type="text" id="ci" required placeholder="Calle Miranda">
             </div>
             <div class="input-group" id="group_cf">
-                <div class="label-row"><label>Calle Final (CF)</label><button type="button" class="na-pill" onclick="toggleNA('cf')">N/A</button></div>
-                <input type="text" id="cf" placeholder="Calle Bolivar">
+                <label>Calle Final (CF) *</label>
+                <input type="text" id="cf" required placeholder="Calle Bolivar">
             </div>
+
             <div class="input-group" id="group_residencia">
-                <div class="label-row"><label>Residencia / Conjunto</label><button type="button" class="na-pill" onclick="toggleNA('residencia')">N/A</button></div>
+                <div class="label-row"><label>Residencia / Conjunto</label><button type="button" class="na-pill" onclick="toggleNA('residencia', this)">N/A</button></div>
                 <input type="text" id="residencia" placeholder="Res. Las Flores">
             </div>
             <div class="input-group" id="group_edificio">
-                <div class="label-row"><label>Edificio</label><button type="button" class="na-pill" onclick="toggleNA('edificio')">N/A</button></div>
+                <div class="label-row"><label>Edificio</label><button type="button" class="na-pill" onclick="toggleNA('edificio', this)">N/A</button></div>
                 <input type="text" id="edificio" placeholder="Torre B">
             </div>
             <div class="input-group" id="group_casa"><label>Casa / Piso / Apto *</label><input type="text" id="casa_apto" required placeholder="Casa 12 / Piso 2 Apto 201"></div>
             <div class="input-group" id="group_enlace">
-                <div class="label-row"><label>Enlace Maps / Coordenadas</label><button type="button" class="na-pill" onclick="toggleNA('enlace')">N/A</button></div>
+                <div class="label-row"><label>Enlace Maps / Coordenadas</label><button type="button" class="na-pill" onclick="toggleNA('enlace', this)">N/A</button></div>
                 <input type="text" id="enlace" placeholder="https://maps.app.goo.gl/...">
             </div>
         </div>
@@ -578,7 +580,7 @@
             </div>
         </div>
         <div class="input-group" style="margin-top: 14px;" id="group_obs_router">
-            <div class="label-row"><label>Observación del Router</label><button type="button" class="na-pill" onclick="toggleNA('obs_router')">N/A</button></div>
+            <div class="label-row"><label>Observación del Router</label><button type="button" class="na-pill" onclick="toggleNA('obs_router', this)">N/A</button></div>
             <textarea id="obs_router" rows="2" placeholder="Posee router propio Gigabit..."></textarea>
         </div>
     </section>
@@ -611,16 +613,16 @@
                         <option>13$</option>
                         <option selected>21$</option>
                         <option>22$</option>
-                        <option>29$</option>
                         <option>30$</option>
-                        <option>32$</option>
+                        <option>31$</option>
+                        <option>33$</option>
                         <option>37,12$</option>
-                        <option>44$</option>
-                        <option>60$</option>
+                        <option>45$</option>
+                        <option>61$</option>
                     </select>
                 </div>
                 <div class="input-group" id="group_promocion">
-                    <div class="label-row"><label>Promoción Aplicada</label><button type="button" class="na-pill" onclick="toggleNA('promocion')">N/A</button></div>
+                    <div class="label-row"><label>Promoción Aplicada</label><button type="button" class="na-pill" onclick="toggleNA('promocion', this)">N/A</button></div>
                     <select id="promocion" required>
                         <option selected value="N/A">N/A</option>
                         <option>3M x 19$</option>
@@ -652,15 +654,15 @@
                 <input type="text" id="tasa_bcv" placeholder="813.74">
             </div>
             <div class="input-group">
-                <div class="label-row"><label>Terminal</label><button type="button" class="na-pill" onclick="toggleNA('terminal')">N/A</button></div>
+                <div class="label-row"><label>Terminal</label><button type="button" class="na-pill" onclick="toggleNA('terminal', this)">N/A</button></div>
                 <input type="text" id="terminal" placeholder="NA">
             </div>
             <div class="input-group">
-                <div class="label-row"><label>Lote</label><button type="button" class="na-pill" onclick="toggleNA('lote')">N/A</button></div>
+                <div class="label-row"><label>Lote</label><button type="button" class="na-pill" onclick="toggleNA('lote', this)">N/A</button></div>
                 <input type="text" id="lote" placeholder="NA">
             </div>
             <div class="input-group">
-                <div class="label-row"><label>Aprobación</label><button type="button" class="na-pill" onclick="toggleNA('aprobacion')">N/A</button></div>
+                <div class="label-row"><label>Aprobación</label><button type="button" class="na-pill" onclick="toggleNA('aprobacion', this)">N/A</button></div>
                 <input type="text" id="aprobacion" placeholder="NA">
             </div>
         </div>
@@ -828,20 +830,16 @@
         const el = document.getElementById(inputId);
         if (!el) return;
 
-        // Si no se pasó btn directamente, intentamos capturarlo
         if (!btn && window.event) {
             btn = window.event.target.closest('.na-pill');
         }
 
-        // Evaluamos si el botón ya está activo
         const estaActivo = btn ? btn.classList.contains('active') : (el.value.toUpperCase() === "NA" || el.value.toUpperCase() === "N/A");
 
         if (estaActivo) {
-            // 🔄 DESMARCAR: Limpia el texto y apaga el botón
             el.value = "";
             if (btn) btn.classList.remove('active');
         } else {
-            // ✅ MARCAR: Coloca "NA" y enciende el botón
             el.value = "NA";
             if (btn) btn.classList.add('active');
         }
@@ -885,7 +883,6 @@
         }
     }
 
-    // Capitalizador estricto de palabras
     function capitalizarPalabras(texto) {
         if (!texto) return "";
         let t = texto.trim();
@@ -895,7 +892,6 @@
         });
     }
 
-    // Generador Inteligente con Salud
     function generarDatosAleatorios() {
         const pick = arr => arr[Math.floor(Math.random() * arr.length)];
         const randNum = (min, max) => Math.floor(Math.random() * (max - min + 1)) + min;
@@ -946,7 +942,6 @@
         document.getElementById('enlace').value = "https://maps.app.goo.gl/" + randNum(100000, 999999);
 
         document.getElementById('clase').value = "RESIDENCIAL";
-        // Seleccionamos un plan con salud para rellenarla
         document.getElementById('velocidad').value = pick(["400mb", "600mb"]);
         document.getElementById('tipo_red').value = pick(["NETUNO", "COMPARTIDAS"]);
         document.getElementById('ont').value = pick(["SIN WI-FI", "CON WI-FI"]);
@@ -961,7 +956,6 @@
 
         gestionarSalud();
 
-        // Relleno dinámico de salud
         if (document.getElementById('seccion_salud').style.display !== 'none') {
             document.getElementById('b1_nombre').value = document.getElementById('nombre').value;
             document.getElementById('b1_documento').value = document.getElementById('documento').value;
@@ -1000,7 +994,7 @@
         });
 
         if (faltantes.length > 0) {
-            alert("⚠️ Por favor completa los campos requeridos antes de generar.");
+            alert("⚠️ Por favor completa los campos requeridos antes de generar (incluyendo Calle Inicial y Calle Final).");
             return null;
         }
 
@@ -1044,8 +1038,8 @@
             msg += `✅ *Calle Principal:* ${capitalizarPalabras(d.calle_principal)}\n`;
             msg += `✅ *Residencia:* ${capitalizarPalabras(d.residencia) || 'NA'}\n`;
             msg += `✅ *Edificio:* ${capitalizarPalabras(d.edificio) || 'NA'}\n`;
-            msg += `✅ *CI:* ${capitalizarPalabras(d.ci) || 'NA'}\n`;
-            msg += `✅ *CF:* ${capitalizarPalabras(d.cf) || 'NA'}\n`;
+            msg += `✅ *CI:* ${capitalizarPalabras(d.ci)}\n`;
+            msg += `✅ *CF:* ${capitalizarPalabras(d.cf)}\n`;
             msg += `✅ *Casa/Piso/Apto:* ${capitalizarPalabras(d.casa_apto)}\n`;
             msg += `✅ *Enlace:* ${d.enlace || 'NA'}\n`;
             msg += `✅ *Tipo de red:* ${d.tipo_red}\n`;
@@ -1075,8 +1069,8 @@
             msg += `✅ *Calle Principal:* ${capitalizarPalabras(d.calle_principal)}\n`;
             msg += `✅ *Residencia:* ${capitalizarPalabras(d.residencia) || 'NA'}\n`;
             msg += `✅ *Edificio:* ${capitalizarPalabras(d.edificio) || 'NA'}\n`;
-            msg += `✅ *CI:* ${capitalizarPalabras(d.ci) || 'NA'}\n`;
-            msg += `✅ *CF:* ${capitalizarPalabras(d.cf) || 'NA'}\n`;
+            msg += `✅ *CI:* ${capitalizarPalabras(d.ci)}\n`;
+            msg += `✅ *CF:* ${capitalizarPalabras(d.cf)}\n`;
             msg += `✅ *Casa/Piso/Apto:* ${capitalizarPalabras(d.casa_apto)}\n`;
             msg += `✅ *Enlace:* ${d.enlace || 'NA'}\n`;
             msg += `✅ *Promocion:* ${d.promocion}\n`;
